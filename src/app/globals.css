@@ -2,26 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  html {
+    --text: #030c2b;
+    --background: #ecf0fe;
+    --primary: #061b60;
+    --secondary: #e2e8fd;
+    --accent: #2152f2;
+    --inputBg: #fff;
+  }
+  html[data-theme="dark"] {
+    --text: #d4ddfc;
+    --background: #010513;
+    --primary: #9fb4f9;
+    --secondary: #02081d;
+    --accent: #0d3ede;
+    --inputBg: #3b3b3b;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+:root {
+  --h-navbar: 4rem;
+}
+
+/* / ---- MASONRY -------------------------------------------------------------------------- */
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -15px; /* gutter size offset */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 15px; /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Style your items */
+.my-masonry-grid_column > div {
+  /* change div to reference your elements you put in <Masonry> */
+  background: grey;
+  margin-bottom: 15px;
+}
+
+/* / ---- COMMON --------------------------------------------------------------------------- */
+
+.p-default {
+  @apply px-5 py-3 md:px-10 md:py-3;
+}
+.m-default {
+  @apply mx-5 my-3 md:mx-10 md:my-3;
+}
+.flex-bc {
+  @apply flex justify-between items-center;
+}
+.size-icon {
+  @apply h-7 w-7;
+}
+.input {
+  @apply w-full px-3 py-1 rounded-md focus:outline-none;
+}
+.h-navbar {
+  @apply h-[var(--h-navbar)];
+}
+/* / ---- HEADER --------------------------------------------------------------------------- */
+
+.header {
+  @apply h-navbar fixed top-0 right-0 left-0 p-default bg-background;
+}
+.logo {
+  @apply text-primary text-lg md:text-2xl font-bold;
 }
