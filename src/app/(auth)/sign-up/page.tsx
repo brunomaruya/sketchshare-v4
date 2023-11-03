@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { SignUpValidation } from "@/lib/validation";
 import Image from "next/image";
 import logo from "../../../../public/images/pencil.png";
+import { createUserAccount } from "@/lib/appwrite/api";
 
 export default function SignUp() {
   // 1. Define your form.
@@ -34,7 +35,8 @@ export default function SignUp() {
   async function onSubmit(values: z.infer<typeof SignUpValidation>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values);
+    const newUser = await createUserAccount(values);
+    console.log(newUser);
   }
   return (
     <Form {...form}>
@@ -98,7 +100,7 @@ export default function SignUp() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="!mt-5">
+        <Button type="submit" className="!mt-5 bg-accent w-full">
           Submit
         </Button>
       </form>

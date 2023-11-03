@@ -16,10 +16,10 @@ export default function RootLayout({
     "https://images.unsplash.com/photo-1505569127510-bde1536937bc?auto=format&fit=crop&q=80&w=2080&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
   return (
     <html lang="en">
-      <body className="m-0 md:rid grid-cols-2 max-h-screen md:w-full">
+      <body className="m-0 lg:grid grid-cols-2 max-h-screen lg:w-full">
         <Provider>
-          <div className="w-72 md:w-96 mx-auto my-20">{children}</div>
-          <div className="hidden md:block md:w-full">
+          <div className="w-72 lg:w-96 mx-auto my-20">{children}</div>
+          <div className="hidden lg:block lg:w-full">
             <Image
               src={imgLink}
               height={500}
