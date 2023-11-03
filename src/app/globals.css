@@ -25,6 +25,10 @@
   --h-navbar: 4rem;
 }
 
+.form-message {
+  @apply text-red-500 font-thin;
+}
+
 /* / ---- MASONRY -------------------------------------------------------------------------- */
 .my-masonry-grid {
   display: -webkit-box; /* Not needed if autoprefixing */
