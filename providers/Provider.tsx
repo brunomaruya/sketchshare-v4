@@ -2,6 +2,13 @@
 import { ThemeProvider } from "next-themes";
 import React, { useEffect, useState } from "react";
 import SearchBarProvider from "../context/SearchBarContext";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 export default function Provider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
@@ -15,7 +22,9 @@ export default function Provider({ children }: { children: React.ReactNode }) {
 
   return (
     <ThemeProvider>
-      <SearchBarProvider>{children}</SearchBarProvider>
+      <QueryClientProvider client={queryClient}>
+        <SearchBarProvider>{children}</SearchBarProvider>
+      </QueryClientProvider>
     </ThemeProvider>
   );
 }

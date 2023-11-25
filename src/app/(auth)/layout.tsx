@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Provider from "../../../providers/Provider";
 import "../globals.css";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata = {
   title: "Next.js",
@@ -29,6 +30,7 @@ export default function RootLayout({
             />
           </div>
         </Provider>
+        <Toaster />
       </body>
     </html>
   );
