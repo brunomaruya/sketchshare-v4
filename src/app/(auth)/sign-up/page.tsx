@@ -18,6 +18,7 @@ import { SignUpValidation } from "@/lib/validation";
 import Image from "next/image";
 import logo from "../../../../public/images/pencil.png";
 import { useToast } from "@/components/ui/use-toast";
+import { createNewAccount } from "@/lib/appwrite/api";
 
 export default function SignUp() {
   const { toast } = useToast();
@@ -26,17 +27,15 @@ export default function SignUp() {
   const form = useForm<z.infer<typeof SignUpValidation>>({
     resolver: zodResolver(SignUpValidation),
     defaultValues: {
-      name: "",
       username: "",
       email: "",
       password: "",
     },
   });
 
-  // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof SignUpValidation>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+    createNewAccount(values);
+    console.log("onSubmit");
   }
   return (
     <Form {...form}>
@@ -47,19 +46,6 @@ export default function SignUp() {
 
       <h2 className="text-xl  mb-3">Create an Account</h2>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input placeholder="name" {...field} />
-              </FormControl>
-              <FormMessage className="form-message " />
-            </FormItem>
-          )}
-        />
         <FormField
           control={form.control}
           name="username"

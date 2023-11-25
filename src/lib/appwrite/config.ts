@@ -14,3 +14,5 @@ export const client = new Client();
 
 client.setProject(appwriteConfig.projectId ? appwriteConfig.projectId : "");
 client.setEndpoint(appwriteConfig.url ? appwriteConfig.url : "");
+
+export const account = new Account(client);
