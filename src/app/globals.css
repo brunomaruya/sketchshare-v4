@@ -69,6 +69,9 @@
 .h-navbar {
   @apply h-[var(--h-navbar)];
 }
+.btn {
+  @apply w-20 px-3 py-1 hover:cursor-pointer bg-primary text-background rounded-md hover:bg-accent;
+}
 /* / ---- HEADER --------------------------------------------------------------------------- */
 
 .header {

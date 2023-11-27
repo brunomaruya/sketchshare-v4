@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function NavLinks() {
   return (
-    <div className="flex gap-3 items-center">
+    <div className="flex gap-3 items-center ">
       {navLinks.map((navLink) => {
         return (
           <div className="flex items-center gap-3" key={navLink.name}>
@@ -19,6 +19,11 @@ export default function NavLinks() {
         );
       })}
       <ThemeSwitcher />
+      <button className="flex items-center gap-3">
+        <Link href="/sign-up" className="btn ">
+          Sign up
+        </Link>
+      </button>
     </div>
   );
 }

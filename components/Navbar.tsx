@@ -16,9 +16,11 @@ export default function Navbar() {
             <Logo />
           </div>
         )}
+
         <div className="md:block hidden">
           <Logo />
         </div>
+
         {isSearchBarOpen ? (
           <div className="w-full md:hidden block">
             <SearchBar />
@@ -29,9 +31,11 @@ export default function Navbar() {
             onClick={() => setIsSearchBarOpen((prev) => !prev)}
           />
         )}
+
         <div className="w-full hidden md:block mx-10">
           <SearchBar />
         </div>
+
         <div className="hidden md:block">
           <NavLinks />
         </div>
