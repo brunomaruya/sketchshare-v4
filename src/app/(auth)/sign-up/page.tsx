@@ -36,6 +36,7 @@ export default function SignUp() {
 
   async function onSubmit(values: z.infer<typeof SignUpValidation>) {
     createNewAccount(values);
+    window.location.assign("/");
     console.log("onSubmit");
   }
   return (

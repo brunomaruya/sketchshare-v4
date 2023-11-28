@@ -1,7 +1,7 @@
 import { INewUser } from "@/types";
 import { account } from "./config";
 import { ID } from "appwrite";
-import { CurrentUserType } from "../../../context/UserProvider";
+import { CurrentUserType } from "../../../context/UserContext";
 
 export const createNewAccount = async ({
   email,

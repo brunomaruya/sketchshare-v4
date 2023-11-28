@@ -2,7 +2,7 @@
 import { ThemeProvider } from "next-themes";
 import React, { useEffect, useState } from "react";
 import SearchBarProvider from "../context/SearchBarContext";
-import UserProvider from "../context/UserProvider";
+import UserProvider from "../context/UserContext";
 import {
   QueryClient,
   QueryClientProvider,

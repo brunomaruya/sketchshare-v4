@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { navLinks } from "../consts/navLinks";
 import ThemeSwitcher from "./ThemeSwitcher";
 import Link from "next/link";
-import { UserContext } from "../context/UserProvider";
+import { UserContext } from "../context/UserContext";
 import UserBtn from "./common/UserBtn";
 
 export default function NavLinks() {
@@ -26,8 +26,8 @@ export default function NavLinks() {
         {currentUser ? (
           <UserBtn />
         ) : (
-          <Link href="/sign-up" className="btn ">
-            Sign up
+          <Link href="/sign-in" className="btn ">
+            Sign in
           </Link>
         )}
       </button>

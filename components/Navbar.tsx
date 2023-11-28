@@ -5,7 +5,7 @@ import SearchBar from "./SearchBar";
 import Logo from "./Logo";
 import { SearchBarContext } from "../context/SearchBarContext";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { UserContext } from "../context/UserProvider";
+import { UserContext } from "../context/UserContext";
 import { getUser } from "@/lib/appwrite/api";
 
 export default function Navbar() {

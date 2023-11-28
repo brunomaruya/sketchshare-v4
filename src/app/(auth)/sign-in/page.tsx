@@ -35,6 +35,7 @@ export default function SignIn() {
 
   async function onSubmit(values: z.infer<typeof SignInValidation>) {
     login(values);
+    window.location.assign("/");
     console.log("onSubmit");
   }
   return (
