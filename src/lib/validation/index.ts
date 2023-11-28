@@ -5,3 +5,7 @@ export const SignUpValidation = z.object({
   email: z.string().email(),
   password: z.string().min(5, { message: "Too short" }).max(50),
 });
+export const SignInValidation = z.object({
+  email: z.string().email(),
+  password: z.string().min(5, { message: "Too short" }).max(50),
+});

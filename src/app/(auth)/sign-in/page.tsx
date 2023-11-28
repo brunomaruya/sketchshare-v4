@@ -14,28 +14,27 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { SignUpValidation } from "@/lib/validation";
+import { SignInValidation } from "@/lib/validation";
 import Image from "next/image";
 import logo from "../../../../public/images/pencil.png";
 import { useToast } from "@/components/ui/use-toast";
-import { createNewAccount } from "@/lib/appwrite/api";
+import { createNewAccount, login } from "@/lib/appwrite/api";
 import Link from "next/link";
 
-export default function SignUp() {
+export default function SignIn() {
   const { toast } = useToast();
 
   // 1. Define your form.
-  const form = useForm<z.infer<typeof SignUpValidation>>({
-    resolver: zodResolver(SignUpValidation),
+  const form = useForm<z.infer<typeof SignInValidation>>({
+    resolver: zodResolver(SignInValidation),
     defaultValues: {
-      username: "",
       email: "",
       password: "",
     },
   });
 
-  async function onSubmit(values: z.infer<typeof SignUpValidation>) {
-    createNewAccount(values);
+  async function onSubmit(values: z.infer<typeof SignInValidation>) {
+    login(values);
     console.log("onSubmit");
   }
   return (
@@ -47,20 +46,6 @@ export default function SignUp() {
 
       <h2 className="text-xl  mb-3">Create an Account</h2>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input placeholder="username" {...field} />
-              </FormControl>
-              <FormMessage className="form-message " />
-            </FormItem>
-          )}
-        />
-
         <FormField
           control={form.control}
           name="email"
@@ -87,8 +72,8 @@ export default function SignUp() {
             </FormItem>
           )}
         />
-        <Link className="text-primary" href={"/sign-in"}>
-          Already have an account?
+        <Link className="text-primary" href={"/sign-up"}>
+          Don't have an account?
         </Link>
         <Button type="submit" className="!mt-5 bg-accent w-full">
           Submit

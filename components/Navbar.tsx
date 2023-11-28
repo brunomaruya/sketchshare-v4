@@ -5,9 +5,12 @@ import SearchBar from "./SearchBar";
 import Logo from "./Logo";
 import { SearchBarContext } from "../context/SearchBarContext";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { useUser } from "../context/useUser";
 
 export default function Navbar() {
   const { isSearchBarOpen, setIsSearchBarOpen } = useContext(SearchBarContext);
+  const { currentUser } = useUser();
+  console.log(currentUser);
   return (
     <header className="header">
       <div className="flex-bc">

@@ -9,7 +9,22 @@ export const createNewAccount = async ({
 }: INewUser) => {
   try {
     await account.create(ID.unique(), email, password, username);
-    console.log("Acho que deu tudo certo");
+    console.log("Conta criada com sucesso");
+  } catch (err) {
+    console.log("Alguma coisa deu errado: " + err);
+  }
+};
+
+export const login = async ({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) => {
+  try {
+    await account.createEmailSession(email, password);
+    console.log("Logado com sucesso");
   } catch (err) {
     console.log("Alguma coisa deu errado: " + err);
   }

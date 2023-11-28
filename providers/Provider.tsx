@@ -2,6 +2,7 @@
 import { ThemeProvider } from "next-themes";
 import React, { useEffect, useState } from "react";
 import SearchBarProvider from "../context/SearchBarContext";
+import UserProvider from "../context/useUser";
 import {
   QueryClient,
   QueryClientProvider,
@@ -22,9 +23,11 @@ export default function Provider({ children }: { children: React.ReactNode }) {
 
   return (
     <ThemeProvider>
-      <QueryClientProvider client={queryClient}>
-        <SearchBarProvider>{children}</SearchBarProvider>
-      </QueryClientProvider>
+      <UserProvider>
+        <QueryClientProvider client={queryClient}>
+          <SearchBarProvider>{children}</SearchBarProvider>
+        </QueryClientProvider>
+      </UserProvider>
     </ThemeProvider>
   );
 }
