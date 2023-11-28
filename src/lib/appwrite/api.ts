@@ -32,9 +32,11 @@ export const login = async ({
 
 export const getUser = async () => {
   try {
-    const promise = await account.get();
-    console.log("getUser success");
-    return promise;
+    await account.get().then(function (resolver) {
+      console.log("getUser success");
+      console.log(resolver);
+      return resolver;
+    });
   } catch (err) {
     console.log("Alguma coisa deu errado: " + err);
   }
