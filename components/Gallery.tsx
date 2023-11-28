@@ -3,6 +3,7 @@ import React from "react";
 import Masonry from "react-masonry-css";
 import { images } from "../consts/images";
 import Image from "next/image";
+import { getUser } from "@/lib/appwrite/api";
 
 export default function Gallery() {
   const gallery = images.map((image, index) => {
