@@ -44,3 +44,17 @@ export const getUser = async () => {
     return;
   }
 };
+
+export const deleteSession = async () => {
+  const promise = account.deleteSession("current");
+
+  promise.then(
+    function (response) {
+      console.log("delete");
+      console.log(response); // Success
+    },
+    function (error) {
+      console.log(error); // Failure
+    }
+  );
+};

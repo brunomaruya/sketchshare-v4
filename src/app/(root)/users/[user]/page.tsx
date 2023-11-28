@@ -1,4 +1,5 @@
 import React from "react";
+import SignOutBtn from "../../../../../components/common/SignOutBtn";
 
 interface ProductProps {
   params: {
@@ -7,5 +8,10 @@ interface ProductProps {
 }
 
 export default function User({ params }: ProductProps) {
-  return <div className="mt-[var(--h-navbar)]">User: {params.user}</div>;
+  return (
+    <div className="mt-[var(--h-navbar)]">
+      <h1>User: {params.user}</h1>
+      <SignOutBtn />
+    </div>
+  );
 }
