@@ -1,6 +1,7 @@
 import { INewUser } from "@/types";
 import { account } from "./config";
 import { ID } from "appwrite";
+import { CurrentUserType } from "../../../context/UserProvider";
 
 export const createNewAccount = async ({
   email,
@@ -35,9 +36,11 @@ export const getUser = async () => {
     await account.get().then(function (resolver) {
       console.log("getUser success");
       console.log(resolver);
+
       return resolver;
     });
   } catch (err) {
     console.log("Alguma coisa deu errado: " + err);
+    return;
   }
 };

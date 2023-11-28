@@ -6,6 +6,7 @@ import Logo from "./Logo";
 import { SearchBarContext } from "../context/SearchBarContext";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { UserContext } from "../context/UserProvider";
+import { getUser } from "@/lib/appwrite/api";
 
 export default function Navbar() {
   const { isSearchBarOpen, setIsSearchBarOpen } = useContext(SearchBarContext);
@@ -14,7 +15,7 @@ export default function Navbar() {
   return (
     <header className="header">
       <h1>aqui</h1>
-      <h1>{currentUser ? currentUser.name : ""}</h1>
+      <h1>{currentUser ? currentUser.name : "erro"}</h1>
       <div className="flex-bc">
         {isSearchBarOpen ? null : (
           <div className="md:hidden">
