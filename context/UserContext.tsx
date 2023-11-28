@@ -1,5 +1,5 @@
 " use client";
-import { getUser } from "@/lib/appwrite/api";
+import { createUserDocument, getUser } from "@/lib/appwrite/api";
 import { account } from "@/lib/appwrite/config";
 import React, { createContext, useContext, useEffect, useState } from "react";
 

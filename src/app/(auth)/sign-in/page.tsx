@@ -18,7 +18,11 @@ import { SignInValidation } from "@/lib/validation";
 import Image from "next/image";
 import logo from "../../../../public/images/pencil.png";
 import { useToast } from "@/components/ui/use-toast";
-import { createNewAccount, login } from "@/lib/appwrite/api";
+import {
+  createNewAccount,
+  createUserDocument,
+  login,
+} from "@/lib/appwrite/api";
 import Link from "next/link";
 
 export default function SignIn() {
@@ -28,13 +32,13 @@ export default function SignIn() {
   const form = useForm<z.infer<typeof SignInValidation>>({
     resolver: zodResolver(SignInValidation),
     defaultValues: {
-      email: "",
-      password: "",
+      email: "test@test.com",
+      password: "testando",
     },
   });
 
   async function onSubmit(values: z.infer<typeof SignInValidation>) {
-    login(values);
+    await login(values);
     window.location.assign("/");
     console.log("onSubmit");
   }

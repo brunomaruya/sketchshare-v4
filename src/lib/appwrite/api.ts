@@ -1,5 +1,5 @@
 import { INewUser } from "@/types";
-import { account } from "./config";
+import { account, databases, appwriteConfig } from "./config";
 import { ID } from "appwrite";
 import { CurrentUserType } from "../../../context/UserContext";
 
@@ -55,6 +55,34 @@ export const deleteSession = async () => {
     },
     function (error) {
       console.log(error); // Failure
+    }
+  );
+};
+
+//--------------------------------------------------------------------------------------//
+//                                      DATABASES                                       //
+//--------------------------------------------------------------------------------------//
+
+export const createUserDocument = async ({
+  username,
+  email,
+}: {
+  username: string;
+  email: string;
+}) => {
+  const promise = databases.createDocument(
+    appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
+    appwriteConfig.userCollectionId ? appwriteConfig.userCollectionId : "",
+    ID.unique(),
+    { accountId: ID.unique(), username: username, email: email }
+  );
+
+  promise.then(
+    function (response) {
+      console.log(response); // Success
+    },
+    function (error) {
+      console.log("ERRRRRROOOOOO: " + error); // Failure
     }
   );
 };
