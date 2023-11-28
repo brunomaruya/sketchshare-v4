@@ -10,12 +10,9 @@ import { getUser } from "@/lib/appwrite/api";
 
 export default function Navbar() {
   const { isSearchBarOpen, setIsSearchBarOpen } = useContext(SearchBarContext);
-  const { currentUser } = useContext(UserContext);
 
   return (
     <header className="header">
-      <h1>aqui</h1>
-      <h1>{currentUser ? currentUser.name : "erro"}</h1>
       <div className="flex-bc">
         {isSearchBarOpen ? null : (
           <div className="md:hidden">

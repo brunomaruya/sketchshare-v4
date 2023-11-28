@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { navLinks } from "../consts/navLinks";
 import ThemeSwitcher from "./ThemeSwitcher";
 import Link from "next/link";
+import { UserContext } from "../context/UserProvider";
+import UserBtn from "./common/UserBtn";
 
 export default function NavLinks() {
+  const { currentUser } = useContext(UserContext);
   return (
     <div className="flex gap-3 items-center ">
       {navLinks.map((navLink) => {
@@ -20,9 +23,13 @@ export default function NavLinks() {
       })}
       <ThemeSwitcher />
       <button className="flex items-center gap-3">
-        <Link href="/sign-up" className="btn ">
-          Sign up
-        </Link>
+        {currentUser ? (
+          <UserBtn />
+        ) : (
+          <Link href="/sign-up" className="btn ">
+            Sign up
+          </Link>
+        )}
       </button>
     </div>
   );
