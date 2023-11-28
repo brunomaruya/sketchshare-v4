@@ -1,6 +1,6 @@
 "use client";
 import * as z from "zod";
-import React, { use } from "react";
+import React, { use, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -24,9 +24,12 @@ import {
   login,
 } from "@/lib/appwrite/api";
 import Link from "next/link";
+import { UserContext } from "../../../../context/UserContext";
+import { account } from "@/lib/appwrite/config";
 
 export default function SignUp() {
   const { toast } = useToast();
+  const { currentUser } = useContext(UserContext);
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof SignUpValidation>>({
@@ -40,10 +43,28 @@ export default function SignUp() {
 
   async function onSubmit(values: z.infer<typeof SignUpValidation>) {
     await createNewAccount(values);
-    await createUserDocument(values);
     await login(values);
+
+    const promise = account.get();
+
+    promise.then(
+      function (response) {
+        console.log("get success");
+        console.log(response); // Success
+      },
+      function (error) {
+        console.log("errrrrrro: " + error); // Failure
+      }
+    );
+    // console.log("currentUser:");
+    // console.log(currentUser);
+
+    await createUserDocument({
+      accountId: currentUser.$id,
+      email: currentUser.email,
+      username: currentUser.name,
+    });
     window.location.assign("/");
-    console.log("onSubmit");
   }
   return (
     <Form {...form}>

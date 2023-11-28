@@ -9,10 +9,16 @@ export const createNewAccount = async ({
   username,
 }: INewUser) => {
   try {
-    await account.create(ID.unique(), email, password, username);
-    console.log("Conta criada com sucesso");
+    const promise = await account.create(
+      ID.unique(),
+      email,
+      password,
+      username
+    );
+    console.log("Conta criada com sucesso:");
+    console.log(promise);
   } catch (err) {
-    console.log("Alguma coisa deu errado: " + err);
+    console.log("Alguma coisa deu errado em createNewAccount: " + err);
   }
 };
 
@@ -27,14 +33,14 @@ export const login = async ({
     await account.createEmailSession(email, password);
     console.log("Logado com sucesso");
   } catch (err) {
-    console.log("Alguma coisa deu errado: " + err);
+    console.log("Alguma coisa deu errado em login: " + err);
   }
 };
 
 export const getUser = async () => {
   try {
     await account.get().then(function (resolver) {
-      console.log("getUser success");
+      console.log("getUser success:");
       console.log(resolver);
 
       return resolver;
@@ -50,7 +56,7 @@ export const deleteSession = async () => {
 
   promise.then(
     function (response) {
-      console.log("delete");
+      console.log("deleteSession success");
       console.log(response); // Success
     },
     function (error) {
@@ -64,21 +70,25 @@ export const deleteSession = async () => {
 //--------------------------------------------------------------------------------------//
 
 export const createUserDocument = async ({
+  accountId,
   username,
   email,
 }: {
+  accountId: string;
   username: string;
   email: string;
 }) => {
+  console.log("Criando UserDocument");
   const promise = databases.createDocument(
     appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
     appwriteConfig.userCollectionId ? appwriteConfig.userCollectionId : "",
     ID.unique(),
-    { accountId: ID.unique(), username: username, email: email }
+    { accountId: accountId, username: username, email: email }
   );
 
   promise.then(
     function (response) {
+      console.log("createUserDocument success:");
       console.log(response); // Success
     },
     function (error) {

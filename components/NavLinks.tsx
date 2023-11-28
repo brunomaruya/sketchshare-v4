@@ -10,7 +10,7 @@ import { createUserDocument } from "@/lib/appwrite/api";
 
 export default function NavLinks() {
   const { currentUser } = useContext(UserContext);
-  console.log(currentUser);
+  // console.log(currentUser);
   return (
     <div className="flex gap-3 items-center ">
       {navLinks.map((navLink) => {
