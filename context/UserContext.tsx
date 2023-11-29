@@ -22,6 +22,7 @@ export interface CurrentUserType {
 
 type UserContextType = {
   currentUser: CurrentUserType;
+  setCurrentUser: React.Dispatch<any>;
 };
 
 export const UserContext = createContext({} as UserContextType);
@@ -45,7 +46,7 @@ export default function UserProvider({
   useEffect(() => {
     init();
   }, []);
-  const values = { currentUser };
+  const values = { currentUser, setCurrentUser };
 
   return <UserContext.Provider value={values}>{children}</UserContext.Provider>;
 }

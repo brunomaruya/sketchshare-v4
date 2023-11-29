@@ -1,7 +1,8 @@
 import { INewUser } from "@/types";
 import { account, databases, appwriteConfig } from "./config";
 import { ID } from "appwrite";
-import { CurrentUserType } from "../../../context/UserContext";
+import { CurrentUserType, UserContext } from "../../../context/UserContext";
+import { useContext } from "react";
 
 export const createNewAccount = async ({
   email,
@@ -15,10 +16,12 @@ export const createNewAccount = async ({
       password,
       username
     );
-    console.log("Conta criada com sucesso:");
+    console.log("Conta criada:");
     console.log(promise);
+    return true;
   } catch (err) {
     console.log("Alguma coisa deu errado em createNewAccount: " + err);
+    return false;
   }
 };
 
@@ -30,24 +33,26 @@ export const login = async ({
   password: string;
 }) => {
   try {
-    await account.createEmailSession(email, password);
-    console.log("Logado com sucesso");
+    const promise = await account.createEmailSession(email, password);
+    console.log("Conta logada: ");
+    console.log(promise);
+    return true;
   } catch (err) {
     console.log("Alguma coisa deu errado em login: " + err);
+    return false;
   }
 };
 
 export const getUser = async () => {
   try {
-    await account.get().then(function (resolver) {
-      console.log("getUser success:");
-      console.log(resolver);
+    const promise = await account.get();
 
-      return resolver;
-    });
+    console.log("Promise: ");
+    console.log(promise);
+    return promise;
   } catch (err) {
     console.log("Alguma coisa deu errado: " + err);
-    return;
+    return false;
   }
 };
 
@@ -79,20 +84,38 @@ export const createUserDocument = async ({
   email: string;
 }) => {
   console.log("Criando UserDocument");
-  const promise = databases.createDocument(
-    appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
-    appwriteConfig.userCollectionId ? appwriteConfig.userCollectionId : "",
-    ID.unique(),
-    { accountId: accountId, username: username, email: email }
-  );
+  // const promise = databases.createDocument(
+  //   appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
+  //   appwriteConfig.userCollectionId ? appwriteConfig.userCollectionId : "",
+  //   ID.unique(),
+  //   { accountId: accountId, username: username, email: email }
+  // );
 
-  promise.then(
-    function (response) {
-      console.log("createUserDocument success:");
-      console.log(response); // Success
-    },
-    function (error) {
-      console.log("ERRRRRROOOOOO: " + error); // Failure
-    }
-  );
+  // promise.then(
+  //   function (response) {
+  //     console.log("createUserDocument success:");
+  //     console.log(response); // Success
+  //     // window.location.assign("/");
+  //     return true;
+  //   },
+  //   function (error) {
+  //     console.log("ERRRRRROOOOOO: " + error); // Failure
+  //     return false;
+  //   }
+  // );
+
+  try {
+    const promise = databases.createDocument(
+      appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
+      appwriteConfig.userCollectionId ? appwriteConfig.userCollectionId : "",
+      ID.unique(),
+      { accountId: accountId, username: username, email: email }
+    );
+    console.log("User Document criado:");
+    console.log(promise); // Success
+    return true;
+  } catch (err) {
+    console.log("ERRRRRROOOOOO: " + err); // Failure
+    //     return false;
+  }
 };

@@ -1,6 +1,6 @@
 "use client";
 import * as z from "zod";
-import React, { use, useContext } from "react";
+import React, { use, useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -21,6 +21,7 @@ import { useToast } from "@/components/ui/use-toast";
 import {
   createNewAccount,
   createUserDocument,
+  getUser,
   login,
 } from "@/lib/appwrite/api";
 import Link from "next/link";
@@ -29,8 +30,17 @@ import { account } from "@/lib/appwrite/config";
 
 export default function SignUp() {
   const { toast } = useToast();
-  const { currentUser } = useContext(UserContext);
-
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+  useEffect(() => {
+    console.log("inside useEffect");
+    console.log(currentUser);
+    createUserDocument({
+      accountId: currentUser.$id,
+      email: currentUser.email,
+      username: currentUser.name,
+    });
+    window.location.assign("/");
+  }, [currentUser]);
   // 1. Define your form.
   const form = useForm<z.infer<typeof SignUpValidation>>({
     resolver: zodResolver(SignUpValidation),
@@ -42,29 +52,48 @@ export default function SignUp() {
   });
 
   async function onSubmit(values: z.infer<typeof SignUpValidation>) {
-    await createNewAccount(values);
-    await login(values);
+    const createNewAccountSuccess = await createNewAccount(values);
 
-    const promise = account.get();
+    if (createNewAccountSuccess) {
+      console.log("CreateNewAccountSuccess:");
+      console.log(createNewAccountSuccess);
+      const loginSuccess = await login(values);
+      if (loginSuccess) {
+        console.log("loginSuccess:");
+        console.log(loginSuccess);
 
-    promise.then(
-      function (response) {
-        console.log("get success");
-        console.log(response); // Success
-      },
-      function (error) {
-        console.log("errrrrrro: " + error); // Failure
+        const getUserSuccess = await getUser();
+        if (getUserSuccess) {
+          console.log("getUserSuccess:");
+          console.log(getUserSuccess);
+
+          setCurrentUser(getUserSuccess);
+          // if (currentUser) {
+          //   await createUserDocument({
+          //     accountId: currentUser.$id,
+          //     email: currentUser.email,
+          //     username: currentUser.name,
+          //   });
+          // }
+        }
       }
-    );
+    }
+
+    // const promise = account.get();
+
+    // promise.then(
+    //   function (response) {
+    //     console.log("get success");
+    //     console.log(response); // Success
+    //   },
+    //   function (error) {
+    //     console.log("errrrrrro: " + error); // Failure
+    //   }
+    // );
     // console.log("currentUser:");
     // console.log(currentUser);
 
-    await createUserDocument({
-      accountId: currentUser.$id,
-      email: currentUser.email,
-      username: currentUser.name,
-    });
-    window.location.assign("/");
+    // window.location.assign("/");
   }
   return (
     <Form {...form}>
@@ -122,6 +151,15 @@ export default function SignUp() {
           Submit
         </Button>
       </form>
+      <button
+        onClick={() => {
+          setCurrentUser("20");
+          console.log(currentUser);
+        }}
+      >
+        button
+      </button>
+      {/* <div>{currentUser}</div> */}
     </Form>
   );
 }
