@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { navLinks } from "../consts/navLinks";
 import ThemeSwitcher from "./ThemeSwitcher";
 import Link from "next/link";
@@ -9,7 +9,19 @@ import { Button } from "@/components/ui/button";
 import { createUserDocument } from "@/lib/appwrite/api";
 
 export default function NavLinks() {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, init } = useContext(UserContext);
+
+  const initInNav = async () => {
+    try {
+      init();
+    } catch (err) {
+      console.log("init falhou: " + err);
+    }
+  };
+
+  useEffect(() => {
+    initInNav();
+  }, []);
   // console.log(currentUser);
   return (
     <div className="flex gap-3 items-center ">

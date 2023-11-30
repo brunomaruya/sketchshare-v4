@@ -1,6 +1,6 @@
 "use client";
 import * as z from "zod";
-import React, { use, useContext, useEffect } from "react";
+import React, { use, useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -30,16 +30,63 @@ import { account } from "@/lib/appwrite/config";
 
 export default function SignUp() {
   const { toast } = useToast();
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser, setCurrentUser, usersList } = useContext(UserContext);
+  const reset = async () => {
+    try {
+      setCurrentUser(() => null);
+    } catch (err) {
+      console.log("setCurrentUser falhou: " + err);
+    }
+  };
   useEffect(() => {
-    console.log("inside useEffect");
+    console.log(
+      "usando use effect com o array currentUser -----------------------------------"
+    );
+
+    reset();
+    console.log("currentUser depois do reset: ");
     console.log(currentUser);
-    createUserDocument({
-      accountId: currentUser.$id,
-      email: currentUser.email,
-      username: currentUser.name,
-    });
-    window.location.assign("/");
+
+    function userDocumentExist() {
+      if (currentUser && usersList) {
+        for (let i in usersList) {
+          if (usersList[i].accountId === currentUser.$id) {
+            // console.log("usersList:");
+            // console.log(usersList[i].accountId);
+            // console.log("currentUser");
+            // console.log(currentUser.$id);
+            return true;
+            // const createUserDocumentSuccess = createUserDocument({
+            //   accountId: currentUser.$id,
+            //   email: currentUser.email,
+            //   username: currentUser.name,
+            // });
+            // if (createUserDocumentSuccess) {
+            //   // window.location.assign("/");
+            // }
+          }
+          return false;
+        }
+      }
+    }
+
+    const exist = userDocumentExist();
+
+    if (currentUser) {
+      console.log("currentUser dentro do segundo:");
+      console.log(currentUser);
+      if (!exist) {
+        console.log("creating documente when does not exist");
+        const createUserDocumentSuccess = createUserDocument({
+          accountId: currentUser.$id,
+          email: currentUser.email,
+          username: currentUser.name,
+        });
+        console.log("documento criado");
+
+        // window.location.assign("/");
+      }
+    }
   }, [currentUser]);
   // 1. Define your form.
   const form = useForm<z.infer<typeof SignUpValidation>>({
@@ -66,34 +113,10 @@ export default function SignUp() {
         if (getUserSuccess) {
           console.log("getUserSuccess:");
           console.log(getUserSuccess);
-
           setCurrentUser(getUserSuccess);
-          // if (currentUser) {
-          //   await createUserDocument({
-          //     accountId: currentUser.$id,
-          //     email: currentUser.email,
-          //     username: currentUser.name,
-          //   });
-          // }
         }
       }
     }
-
-    // const promise = account.get();
-
-    // promise.then(
-    //   function (response) {
-    //     console.log("get success");
-    //     console.log(response); // Success
-    //   },
-    //   function (error) {
-    //     console.log("errrrrrro: " + error); // Failure
-    //   }
-    // );
-    // console.log("currentUser:");
-    // console.log(currentUser);
-
-    // window.location.assign("/");
   }
   return (
     <Form {...form}>
@@ -151,15 +174,6 @@ export default function SignUp() {
           Submit
         </Button>
       </form>
-      <button
-        onClick={() => {
-          setCurrentUser("20");
-          console.log(currentUser);
-        }}
-      >
-        button
-      </button>
-      {/* <div>{currentUser}</div> */}
     </Form>
   );
 }

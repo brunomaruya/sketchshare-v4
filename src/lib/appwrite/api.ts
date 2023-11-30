@@ -63,6 +63,7 @@ export const deleteSession = async () => {
     function (response) {
       console.log("deleteSession success");
       console.log(response); // Success
+      window.location.assign("/sign-in");
     },
     function (error) {
       console.log(error); // Failure
@@ -84,38 +85,23 @@ export const createUserDocument = async ({
   email: string;
 }) => {
   console.log("Criando UserDocument");
-  // const promise = databases.createDocument(
-  //   appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
-  //   appwriteConfig.userCollectionId ? appwriteConfig.userCollectionId : "",
-  //   ID.unique(),
-  //   { accountId: accountId, username: username, email: email }
-  // );
-
-  // promise.then(
-  //   function (response) {
-  //     console.log("createUserDocument success:");
-  //     console.log(response); // Success
-  //     // window.location.assign("/");
-  //     return true;
-  //   },
-  //   function (error) {
-  //     console.log("ERRRRRROOOOOO: " + error); // Failure
-  //     return false;
-  //   }
-  // );
-
   try {
-    const promise = databases.createDocument(
-      appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
-      appwriteConfig.userCollectionId ? appwriteConfig.userCollectionId : "",
-      ID.unique(),
-      { accountId: accountId, username: username, email: email }
-    );
+    const promise = databases
+      .createDocument(
+        appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
+        appwriteConfig.userCollectionId ? appwriteConfig.userCollectionId : "",
+        ID.unique(),
+        { accountId: accountId, username: username, email: email }
+      )
+      .then(function () {
+        window.location.assign("/");
+        // console.log("indo para outra pagina");
+      });
     console.log("User Document criado:");
     console.log(promise); // Success
     return true;
   } catch (err) {
     console.log("ERRRRRROOOOOO: " + err); // Failure
-    //     return false;
+    return false;
   }
 };

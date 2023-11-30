@@ -14,6 +14,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { UserGroupIcon } from "@heroicons/react/24/outline";
+import { UserContext } from "../../context/UserContext";
 
 const frameworks = [
   {
@@ -41,7 +42,9 @@ const frameworks = [
 export function UserSearcher() {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
-
+  const { usersList } = React.useContext(UserContext);
+  // console.log("usersList in userSearcher: ");
+  // console.log(usersList);
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -53,11 +56,13 @@ export function UserSearcher() {
           <CommandInput placeholder="Search user..." />
           <CommandEmpty>No user found.</CommandEmpty>
           <CommandGroup>
-            {frameworks.map((framework) => (
-              <CommandItem key={framework.value} value={framework.value}>
-                {framework.label}
-              </CommandItem>
-            ))}
+            {usersList
+              ? usersList.map((user) => (
+                  <CommandItem key={user.accountId}>
+                    {user.username}
+                  </CommandItem>
+                ))
+              : "Loading"}
           </CommandGroup>
         </Command>
       </PopoverContent>

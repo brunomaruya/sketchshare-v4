@@ -8,7 +8,6 @@ export default function SignOutBtn() {
   const signOut = () => {
     deleteSession();
     setCurrentUser(null);
-    window.location.assign("/sign-in");
   };
   return <button onClick={signOut}>Sign Out</button>;
 }
