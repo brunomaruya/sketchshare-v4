@@ -19,11 +19,6 @@ export const navLinks = [
     icon: <ChatBubbleLeftIcon />,
   },
   {
-    name: "Post",
-    path: "/",
-    icon: <PlusCircleIcon />,
-  },
-  {
     name: "Notifications",
     path: "/",
     icon: <BellIcon />,

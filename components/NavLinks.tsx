@@ -7,6 +7,7 @@ import UserBtn from "./common/UserBtn";
 import { UserSearcher } from "./common/UserSearcher";
 import { Button } from "@/components/ui/button";
 import { createUserDocument } from "@/lib/appwrite/api";
+import PostBtn from "./common/PostBtn";
 
 export default function NavLinks() {
   const { currentUser, init } = useContext(UserContext);
@@ -37,6 +38,8 @@ export default function NavLinks() {
           </div>
         );
       })}
+      <PostBtn />
+
       <UserSearcher />
 
       <ThemeSwitcher />
