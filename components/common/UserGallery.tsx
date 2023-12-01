@@ -43,9 +43,7 @@ export default function UserGallery() {
     console.log(currentUser);
     if (currentUser) {
       if (pageUserId) {
-        console.log(
-          "disgraaaaaaaaaaaaaaaaaccccccccccccccccccccaaaaaaaaaaaaa22222222222222222"
-        );
+        console.log();
         listPosts();
         console.log("Posts: ");
         console.log(posts);
@@ -56,7 +54,6 @@ export default function UserGallery() {
   useEffect(() => {
     if (usersList) {
       if (userPath) {
-        console.log("porcariaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         const result = usersList.find(
           (user: any) => user.username == userPath
         ).$id;
@@ -67,7 +64,6 @@ export default function UserGallery() {
 
   const gallery = posts
     ? posts.map((post: any, index: any) => {
-        console.log("disgracaaaaaaaaaaaaaaaaaaaaaa");
         return (
           <div className="rounded-md relative" key={index}>
             <Image
