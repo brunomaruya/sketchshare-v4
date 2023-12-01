@@ -52,7 +52,7 @@ export default function SignIn() {
         <h1 className="text-3xl text-primary  font-bold">SketchShare</h1>
       </div>
 
-      <h2 className="text-xl  mb-3">Create an Account</h2>
+      <h2 className="text-xl  mb-3">Sign in</h2>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
         <FormField
           control={form.control}

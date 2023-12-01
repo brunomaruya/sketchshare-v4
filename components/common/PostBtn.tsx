@@ -14,6 +14,7 @@ import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { ID } from "appwrite";
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
+import { CircularProgress } from "@mui/material";
 
 export default function PostBtn() {
   const [file, setFile] = useState<any>();
@@ -22,6 +23,7 @@ export default function PostBtn() {
   const [urls, setUrls] = useState([]);
   const [files, setFiles] = useState([]);
   const [filesIds, setFilesIds] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFileChange = (e: any) => {
     if (e.target.files) {
@@ -30,6 +32,7 @@ export default function PostBtn() {
   };
 
   const createFile = async (e: any) => {
+    setIsLoading(true);
     console.log("createFile clicked");
     e.preventDefault();
 
@@ -90,6 +93,7 @@ export default function PostBtn() {
           console.log("createPostSuccess:");
           console.log(resolver);
           setFile(null);
+          setIsLoading(false);
           location.reload();
         });
     } catch (err) {
@@ -119,9 +123,13 @@ export default function PostBtn() {
             <input type="file" onChange={handleFileChange} />
             <AlertDialogAction
               onClick={createFile}
-              className="bg-accent hover:bg-primary w-20"
+              className={
+                file
+                  ? "bg-accent hover:bg-primary w-20"
+                  : "bg-accent hover:bg-primary w-20 cursor-no-drop"
+              }
             >
-              Post
+              {isLoading ? <CircularProgress /> : "Post"}
             </AlertDialogAction>
           </AlertDialogDescription>
         </AlertDialogHeader>
