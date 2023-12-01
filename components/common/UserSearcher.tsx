@@ -42,7 +42,6 @@ export function UserSearcher() {
                     }}
                   >
                     <CommandItem className="w-full">
-                      onclick
                       {user.username}
                     </CommandItem>
                   </button>
