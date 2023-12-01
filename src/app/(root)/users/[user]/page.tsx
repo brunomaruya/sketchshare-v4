@@ -1,5 +1,6 @@
 import React from "react";
 import SignOutBtn from "../../../../../components/common/SignOutBtn";
+import UserGallery from "../../../../../components/common/UserGallery";
 
 interface ProductProps {
   params: {
@@ -9,9 +10,10 @@ interface ProductProps {
 
 export default function User({ params }: ProductProps) {
   return (
-    <div className="mt-[var(--h-navbar)]">
+    <div className="mt-[var(--h-navbar)] ">
       <h1>User: {params.user}</h1>
       <SignOutBtn />
+      <UserGallery />
     </div>
   );
 }

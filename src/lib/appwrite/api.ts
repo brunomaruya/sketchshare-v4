@@ -90,7 +90,7 @@ export const createUserDocument = async ({
       .createDocument(
         appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
         appwriteConfig.userCollectionId ? appwriteConfig.userCollectionId : "",
-        ID.unique(),
+        accountId,
         { accountId: accountId, username: username, email: email }
       )
       .then(function () {

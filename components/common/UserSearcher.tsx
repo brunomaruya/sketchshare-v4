@@ -33,9 +33,19 @@ export function UserSearcher() {
           <CommandGroup>
             {usersList
               ? usersList.map((user: any) => (
-                  <CommandItem key={user.accountId}>
-                    {user.username}
-                  </CommandItem>
+                  <button
+                    className="flex flex-col w-full "
+                    key={user.accountId}
+                    onClick={() => {
+                      console.log("clicked");
+                      window.location.assign(`/users/${user.username}`);
+                    }}
+                  >
+                    <CommandItem className="w-full">
+                      onclick
+                      {user.username}
+                    </CommandItem>
+                  </button>
                 ))
               : "Loading"}
           </CommandGroup>

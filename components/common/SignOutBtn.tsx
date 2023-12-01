@@ -4,10 +4,29 @@ import { UserContext } from "../../context/UserContext";
 import { deleteSession } from "@/lib/appwrite/api";
 
 export default function SignOutBtn() {
-  const { setCurrentUser } = useContext(UserContext);
+  const { setCurrentUser, currentUser } = useContext(UserContext);
+  const pathName = window.location.pathname;
+  const userPath = pathName.split("/")[2];
+
   const signOut = () => {
     deleteSession();
     setCurrentUser(null);
   };
-  return <button onClick={signOut}>Sign Out</button>;
+  return (
+    <>
+      {currentUser ? (
+        <>
+          {currentUser.name == userPath ? (
+            <button onClick={signOut} className="mb-2">
+              Sign Out
+            </button>
+          ) : (
+            ""
+          )}
+        </>
+      ) : (
+        ""
+      )}
+    </>
+  );
 }

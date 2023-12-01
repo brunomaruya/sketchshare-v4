@@ -5,7 +5,6 @@ import TestBtn from "../../../components/common/TestBtn";
 export default function Home() {
   return (
     <main className=" mt-[var(--h-navbar)]">
-      <TestBtn />
       <Gallery />
     </main>
   );

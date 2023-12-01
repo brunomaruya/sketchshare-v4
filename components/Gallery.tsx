@@ -1,23 +1,55 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Masonry from "react-masonry-css";
 import { images } from "../consts/images";
 import Image from "next/image";
+import { appwriteConfig, databases } from "@/lib/appwrite/config";
 
 export default function Gallery() {
-  const gallery = images.map((image, index) => {
-    return (
-      <div className="rounded-md" key={index}>
-        <Image
-          className="rounded-md"
-          src={image.imgLink}
-          width={500}
-          height={500}
-          alt="image"
-        />
-      </div>
+  const [posts, setPosts] = useState<any>();
+
+  const listPosts = async () => {
+    const promise = databases.listDocuments(
+      appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
+      appwriteConfig.postCollectionId ? appwriteConfig.postCollectionId : ""
     );
-  });
+    promise.then(
+      function (response) {
+        setPosts(response.documents);
+      },
+      function (error) {
+        console.log(error); // Failure
+      }
+    );
+  };
+
+  useEffect(() => {
+    // init();
+    listPosts();
+  }, []);
+
+  const test = posts
+    ? posts.map((post: any) => {
+        console.log("map inside ");
+        console.log(posts);
+      })
+    : "";
+
+  const gallery = posts
+    ? posts.map((post: any, index: any) => {
+        return (
+          <div className="rounded-md relative" key={index}>
+            <Image
+              className="rounded-md"
+              src={post.imageUrl}
+              width={500}
+              height={500}
+              alt="image"
+            />
+          </div>
+        );
+      })
+    : "no data";
 
   const breakpointColumnsObj = {
     default: 4,
@@ -27,12 +59,18 @@ export default function Gallery() {
   };
 
   return (
-    <Masonry
-      breakpointCols={breakpointColumnsObj}
-      className="my-masonry-grid m-default"
-      columnClassName="my-masonry-grid_column"
-    >
-      {gallery}
-    </Masonry>
+    <>
+      {posts ? (
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="my-masonry-grid m-default"
+          columnClassName="my-masonry-grid_column"
+        >
+          {gallery}
+        </Masonry>
+      ) : (
+        "Loading..."
+      )}
+    </>
   );
 }
