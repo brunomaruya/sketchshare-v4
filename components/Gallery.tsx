@@ -28,13 +28,6 @@ export default function Gallery() {
     listPosts();
   }, []);
 
-  const test = posts
-    ? posts.map((post: any) => {
-        console.log("map inside ");
-        console.log(posts);
-      })
-    : "";
-
   const gallery = posts
     ? posts.map((post: any, index: any) => {
         return (
