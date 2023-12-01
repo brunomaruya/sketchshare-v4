@@ -27,12 +27,15 @@ import {
 import Link from "next/link";
 import { UserContext } from "../../../../context/UserContext";
 import { account } from "@/lib/appwrite/config";
+import { CircularProgress } from "@mui/material";
 
 export default function SignUp() {
   const { toast } = useToast();
   const { currentUser, setCurrentUser, usersList } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(false);
   const reset = async () => {
     try {
+      setIsLoading(false);
       setCurrentUser(() => null);
     } catch (err) {
       console.log("setCurrentUser falhou: " + err);
@@ -73,8 +76,6 @@ export default function SignUp() {
     const exist = userDocumentExist();
 
     if (currentUser) {
-      console.log("currentUser dentro do segundo:");
-      console.log(currentUser);
       if (!exist) {
         console.log("creating documente when does not exist");
         const createUserDocumentSuccess = createUserDocument({
@@ -99,6 +100,7 @@ export default function SignUp() {
   });
 
   async function onSubmit(values: z.infer<typeof SignUpValidation>) {
+    setIsLoading(true);
     const createNewAccountSuccess = await createNewAccount(values);
 
     if (createNewAccountSuccess) {
@@ -171,7 +173,7 @@ export default function SignUp() {
           Already have an account?
         </Link>
         <Button type="submit" className="!mt-5 bg-accent w-full">
-          Submit
+          {isLoading ? <CircularProgress /> : "Submit"}
         </Button>
       </form>
     </Form>

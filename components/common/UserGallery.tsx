@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { use, useContext, useEffect, useState } from "react";
 import Masonry from "react-masonry-css";
 import { UserContext } from "../../context/UserContext";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function UserGallery() {
   const [posts, setPosts] = useState<any>();
@@ -96,7 +97,9 @@ export default function UserGallery() {
           {gallery}
         </Masonry>
       ) : (
-        "Loading..."
+        <div>
+          <CircularProgress />
+        </div>
       )}
     </>
   );

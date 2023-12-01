@@ -4,6 +4,7 @@ import Masonry from "react-masonry-css";
 import { images } from "../consts/images";
 import Image from "next/image";
 import { appwriteConfig, databases } from "@/lib/appwrite/config";
+import { CircularProgress } from "@mui/material";
 
 export default function Gallery() {
   const [posts, setPosts] = useState<any>();
@@ -62,7 +63,9 @@ export default function Gallery() {
           {gallery}
         </Masonry>
       ) : (
-        "Loading..."
+        <div>
+          <CircularProgress />
+        </div>
       )}
     </>
   );

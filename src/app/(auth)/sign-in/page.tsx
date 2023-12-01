@@ -1,6 +1,6 @@
 "use client";
 import * as z from "zod";
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -24,21 +24,24 @@ import {
   login,
 } from "@/lib/appwrite/api";
 import Link from "next/link";
+import { CircularProgress } from "@mui/material";
 
 export default function SignIn() {
   const { toast } = useToast();
-
+  const [isLoading, setIsLoading] = useState(false);
   // 1. Define your form.
   const form = useForm<z.infer<typeof SignInValidation>>({
     resolver: zodResolver(SignInValidation),
     defaultValues: {
-      email: "test@test.com",
-      password: "testando",
+      email: "",
+      password: "",
     },
   });
 
   async function onSubmit(values: z.infer<typeof SignInValidation>) {
+    setIsLoading(true);
     await login(values);
+    setIsLoading(false);
     window.location.assign("/");
     console.log("onSubmit");
   }
@@ -81,7 +84,7 @@ export default function SignIn() {
           Don&apos;t have an account?
         </Link>
         <Button type="submit" className="!mt-5 bg-accent w-full">
-          Submit
+          {isLoading ? <CircularProgress /> : "Submit"}
         </Button>
       </form>
     </Form>
