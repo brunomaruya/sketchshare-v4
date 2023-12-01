@@ -92,9 +92,9 @@ export default function SignUp() {
   const form = useForm<z.infer<typeof SignUpValidation>>({
     resolver: zodResolver(SignUpValidation),
     defaultValues: {
-      username: "test",
-      email: "test@test.com",
-      password: "testando",
+      username: "",
+      email: "",
+      password: "",
     },
   });
 

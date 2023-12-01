@@ -78,7 +78,7 @@ export default function SignIn() {
           )}
         />
         <Link className="text-primary" href={"/sign-up"}>
-          Don't have an account?
+          Don&apos;t have an account?
         </Link>
         <Button type="submit" className="!mt-5 bg-accent w-full">
           Submit
