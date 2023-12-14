@@ -9,6 +9,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
 import { appwriteConfig, databases, storage } from "@/lib/appwrite/config";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { ID } from "appwrite";
@@ -20,9 +26,6 @@ export default function PostBtn() {
   const [file, setFile] = useState<any>();
   const [url, setUrl] = useState<any>();
   const { currentUser } = useContext(UserContext);
-  const [urls, setUrls] = useState([]);
-  const [files, setFiles] = useState([]);
-  const [filesIds, setFilesIds] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleFileChange = (e: any) => {
@@ -38,7 +41,7 @@ export default function PostBtn() {
 
     if (file) {
       try {
-        const promise = await storage
+        await storage
           .createFile(
             appwriteConfig.storageId ? appwriteConfig.storageId : "",
             ID.unique(),
@@ -108,9 +111,21 @@ export default function PostBtn() {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
-        <PlusCircleIcon className="size-icon" />
-      </AlertDialogTrigger>
+      {currentUser ? (
+        <AlertDialogTrigger>
+          <PlusCircleIcon className="size-icon" />
+        </AlertDialogTrigger>
+      ) : (
+        <Popover>
+          <PopoverTrigger>
+            <PlusCircleIcon className="size-icon" />
+          </PopoverTrigger>
+          <PopoverContent className="bg-background w-full">
+            Sign in to post
+          </PopoverContent>
+        </Popover>
+      )}
+
       <AlertDialogContent className="absolute top-60 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-background">
         <AlertDialogHeader>
           <AlertDialogFooter>
