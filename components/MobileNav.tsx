@@ -10,6 +10,7 @@ import { UserContext } from "../context/UserContext";
 import Link from "next/link";
 import { UserSearcher } from "./common/UserSearcher";
 import PostBtn from "./common/PostBtn";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 export default function MobileNav() {
   const { currentUser } = useContext(UserContext);
@@ -17,7 +18,7 @@ export default function MobileNav() {
     <div className="mobile-nav">
       <ul className="flex flex-bc">
         <li>
-          <UserIcon className="size-icon" />
+          <ThemeSwitcher />
         </li>
 
         <li>
