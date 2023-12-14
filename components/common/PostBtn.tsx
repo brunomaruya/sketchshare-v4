@@ -63,10 +63,9 @@ export default function PostBtn() {
         file.$id
       );
       setUrl(promise);
-      console.log("url:");
       console.log(url);
     } catch (err) {
-      console.log(err);
+      console.log("Error in getFileView: " + err);
     }
   };
 
