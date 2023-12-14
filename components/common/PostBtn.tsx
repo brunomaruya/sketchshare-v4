@@ -120,24 +120,24 @@ export default function PostBtn() {
 
       <AlertDialogContent className="absolute top-60 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-background">
         <AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel className="hover:bg-primary">
+          <AlertDialogFooter className="flex flex-row justify-end">
+            <AlertDialogCancel className="hover:bg-primary  ">
               X
             </AlertDialogCancel>
           </AlertDialogFooter>
           <AlertDialogTitle>Post your art</AlertDialogTitle>
           <AlertDialogDescription>
             <input type="file" onChange={handleFileChange} />
-            <AlertDialogAction
-              onClick={createFile}
-              className={
-                file
-                  ? "bg-accent hover:bg-primary w-20"
-                  : "bg-accent hover:bg-primary w-20 cursor-no-drop"
-              }
-            >
-              {isLoading ? <CircularProgress /> : "Post"}
-            </AlertDialogAction>
+            {file ? (
+              <AlertDialogAction
+                onClick={createFile}
+                className={"bg-accent hover:bg-primary w-20"}
+              >
+                {isLoading ? <CircularProgress /> : "Post"}
+              </AlertDialogAction>
+            ) : (
+              ""
+            )}
           </AlertDialogDescription>
         </AlertDialogHeader>
       </AlertDialogContent>

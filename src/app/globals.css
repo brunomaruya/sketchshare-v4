@@ -34,11 +34,13 @@
   display: -webkit-box; /* Not needed if autoprefixing */
   display: -ms-flexbox; /* Not needed if autoprefixing */
   display: flex;
-  margin-left: -15px; /* gutter size offset */
+  margin-left: -0px; /* gutter size offset */
+  gap: 15px;
   width: auto;
 }
 .my-masonry-grid_column {
-  padding-left: 15px; /* gutter size */
+  padding-left: 0px; /* gutter size */
+  gap: 15px;
   background-clip: padding-box;
 }
 
@@ -79,4 +81,9 @@
 }
 .logo {
   @apply text-primary text-lg md:text-2xl font-bold;
+}
+/* / ---- MOBILE --------------------------------------------------------------------------- */
+
+.mobile-nav {
+  @apply lg:hidden w-full px-7  py-6 fixed bottom-0 z-20 bg-background;
 }
