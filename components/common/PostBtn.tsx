@@ -66,20 +66,14 @@ export default function PostBtn() {
         file.$id
       );
       setUrl(promise);
-      console.log("url:");
-      console.log(url);
     } catch (err) {
       console.log(err);
     }
   };
 
   const createPost = async () => {
-    console.log("createPost called");
-
     try {
-      console.log("currentUser inside function");
-      console.log(currentUser);
-      const promise = databases
+      databases
         .createDocument(
           appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
           appwriteConfig.postCollectionId
@@ -93,8 +87,6 @@ export default function PostBtn() {
           }
         )
         .then((resolver) => {
-          console.log("createPostSuccess:");
-          console.log(resolver);
           setFile(null);
           setIsLoading(false);
           location.reload();
