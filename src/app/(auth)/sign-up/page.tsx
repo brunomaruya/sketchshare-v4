@@ -140,6 +140,23 @@ export default function SignUp() {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="confirm"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Password</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="confirm password"
+                  {...field}
+                  type="password"
+                />
+              </FormControl>
+              <FormMessage className="form-message " />
+            </FormItem>
+          )}
+        />
         <Link className="text-primary" href={"/sign-in"}>
           Already have an account? Click here
         </Link>
