@@ -5,8 +5,7 @@ import Link from "next/link";
 import { UserContext } from "../context/UserContext";
 import UserBtn from "./common/UserBtn";
 import { UserSearcher } from "./common/UserSearcher";
-import { Button } from "@/components/ui/button";
-import { createUserDocument } from "@/lib/appwrite/api";
+
 import PostBtn from "./common/PostBtn";
 
 export default function NavLinks() {
@@ -23,7 +22,6 @@ export default function NavLinks() {
   useEffect(() => {
     initInNav();
   }, []);
-  // console.log(currentUser);
   return (
     <div className="flex gap-3 items-center ">
       {navLinks.map((navLink) => {

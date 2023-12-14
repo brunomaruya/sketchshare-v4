@@ -40,10 +40,11 @@ export default function SignIn() {
 
   async function onSubmit(values: z.infer<typeof SignInValidation>) {
     setIsLoading(true);
-    await login(values);
+    const loginSuccess = await login(values);
     setIsLoading(false);
-    window.location.assign("/");
-    console.log("onSubmit");
+    if (loginSuccess) {
+      window.location.assign("/");
+    }
   }
   return (
     <Form {...form}>

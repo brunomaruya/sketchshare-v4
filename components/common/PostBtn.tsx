@@ -9,6 +9,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
 import { appwriteConfig, databases, storage } from "@/lib/appwrite/config";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { ID } from "appwrite";
@@ -20,9 +26,6 @@ export default function PostBtn() {
   const [file, setFile] = useState<any>();
   const [url, setUrl] = useState<any>();
   const { currentUser } = useContext(UserContext);
-  const [urls, setUrls] = useState([]);
-  const [files, setFiles] = useState([]);
-  const [filesIds, setFilesIds] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleFileChange = (e: any) => {
@@ -38,7 +41,7 @@ export default function PostBtn() {
 
     if (file) {
       try {
-        const promise = await storage
+        await storage
           .createFile(
             appwriteConfig.storageId ? appwriteConfig.storageId : "",
             ID.unique(),
@@ -63,6 +66,7 @@ export default function PostBtn() {
         file.$id
       );
       setUrl(promise);
+      console.log("url:");
       console.log(url);
     } catch (err) {
       console.log("Error in getFileView: " + err);
@@ -70,12 +74,8 @@ export default function PostBtn() {
   };
 
   const createPost = async () => {
-    console.log("createPost called");
-
     try {
-      console.log("currentUser inside function");
-      console.log(currentUser);
-      const promise = databases
+      databases
         .createDocument(
           appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
           appwriteConfig.postCollectionId
@@ -89,8 +89,6 @@ export default function PostBtn() {
           }
         )
         .then((resolver) => {
-          console.log("createPostSuccess:");
-          console.log(resolver);
           setFile(null);
           setIsLoading(false);
           location.reload();
@@ -107,29 +105,41 @@ export default function PostBtn() {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
-        <PlusCircleIcon className="size-icon" />
-      </AlertDialogTrigger>
+      {currentUser ? (
+        <AlertDialogTrigger>
+          <PlusCircleIcon className="size-icon" />
+        </AlertDialogTrigger>
+      ) : (
+        <Popover>
+          <PopoverTrigger>
+            <PlusCircleIcon className="size-icon" />
+          </PopoverTrigger>
+          <PopoverContent className="bg-background w-full">
+            Sign in to post
+          </PopoverContent>
+        </Popover>
+      )}
+
       <AlertDialogContent className="absolute top-60 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-background">
         <AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel className="hover:bg-primary">
+          <AlertDialogFooter className="flex flex-row justify-end">
+            <AlertDialogCancel className="hover:bg-primary  ">
               X
             </AlertDialogCancel>
           </AlertDialogFooter>
           <AlertDialogTitle>Post your art</AlertDialogTitle>
           <AlertDialogDescription>
             <input type="file" onChange={handleFileChange} />
-            <AlertDialogAction
-              onClick={createFile}
-              className={
-                file
-                  ? "bg-accent hover:bg-primary w-20"
-                  : "bg-accent hover:bg-primary w-20 cursor-no-drop"
-              }
-            >
-              {isLoading ? <CircularProgress /> : "Post"}
-            </AlertDialogAction>
+            {file ? (
+              <AlertDialogAction
+                onClick={createFile}
+                className={"bg-accent hover:bg-primary w-20"}
+              >
+                {isLoading ? <CircularProgress /> : "Post"}
+              </AlertDialogAction>
+            ) : (
+              ""
+            )}
           </AlertDialogDescription>
         </AlertDialogHeader>
       </AlertDialogContent>
