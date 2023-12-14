@@ -30,9 +30,9 @@ import { account } from "@/lib/appwrite/config";
 import { CircularProgress } from "@mui/material";
 
 export default function SignUp() {
-  const { toast } = useToast();
   const { currentUser, setCurrentUser, usersList } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
+
   const reset = async () => {
     try {
       setIsLoading(false);
@@ -41,51 +41,29 @@ export default function SignUp() {
       console.log("setCurrentUser falhou: " + err);
     }
   };
-  useEffect(() => {
-    console.log(
-      "usando use effect com o array currentUser -----------------------------------"
-    );
-
-    reset();
-    console.log("currentUser depois do reset: ");
-    console.log(currentUser);
-
-    function userDocumentExist() {
-      if (currentUser && usersList) {
-        for (let i in usersList) {
-          if (usersList[i].accountId === currentUser.$id) {
-            // console.log("usersList:");
-            // console.log(usersList[i].accountId);
-            // console.log("currentUser");
-            // console.log(currentUser.$id);
-            return true;
-            // const createUserDocumentSuccess = createUserDocument({
-            //   accountId: currentUser.$id,
-            //   email: currentUser.email,
-            //   username: currentUser.name,
-            // });
-            // if (createUserDocumentSuccess) {
-            //   // window.location.assign("/");
-            // }
-          }
-          return false;
+  function userDocumentExist() {
+    if (currentUser && usersList) {
+      for (let i in usersList) {
+        if (usersList[i].accountId === currentUser.$id) {
+          return true;
         }
+        return false;
       }
     }
+  }
+
+  useEffect(() => {
+    reset();
 
     const exist = userDocumentExist();
 
     if (currentUser) {
       if (!exist) {
-        console.log("creating documente when does not exist");
-        const createUserDocumentSuccess = createUserDocument({
+        createUserDocument({
           accountId: currentUser.$id,
           email: currentUser.email,
           username: currentUser.name,
         });
-        console.log("documento criado");
-
-        // window.location.assign("/");
       }
     }
   }, [currentUser]);
@@ -104,17 +82,10 @@ export default function SignUp() {
     const createNewAccountSuccess = await createNewAccount(values);
 
     if (createNewAccountSuccess) {
-      console.log("CreateNewAccountSuccess:");
-      console.log(createNewAccountSuccess);
       const loginSuccess = await login(values);
       if (loginSuccess) {
-        console.log("loginSuccess:");
-        console.log(loginSuccess);
-
         const getUserSuccess = await getUser();
         if (getUserSuccess) {
-          console.log("getUserSuccess:");
-          console.log(getUserSuccess);
           setCurrentUser(getUserSuccess);
         }
       }
@@ -170,7 +141,7 @@ export default function SignUp() {
           )}
         />
         <Link className="text-primary" href={"/sign-in"}>
-          Already have an account?
+          Already have an account? Click here
         </Link>
         <Button type="submit" className="!mt-5 bg-accent w-full">
           {isLoading ? <CircularProgress /> : "Submit"}
