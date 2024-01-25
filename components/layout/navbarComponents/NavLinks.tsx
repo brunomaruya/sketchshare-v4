@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from "react";
-import { navLinks } from "../consts/navLinks";
-import ThemeSwitcher from "./ThemeSwitcher";
+import { navLinks } from "../../../consts/navLinks";
+import ThemeSwitcher from "../../ThemeSwitcher";
 import Link from "next/link";
-import { UserContext } from "../context/UserContext";
-import UserBtn from "./common/UserBtn";
-import { UserSearcher } from "./common/UserSearcher";
+import { UserContext } from "../../../context/UserContext";
+import UserBtn from "../../common/UserBtn";
+import { UserSearcher } from "../../common/UserSearcher";
 
-import PostBtn from "./common/PostBtn";
+import PostBtn from "../../common/PostBtn";
 
 export default function NavLinks() {
   const { currentUser, init } = useContext(UserContext);

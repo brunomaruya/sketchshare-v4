@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Masonry from "react-masonry-css";
-import { images } from "../consts/images";
+import { images } from "../../../consts/images";
 import Image from "next/image";
 import { appwriteConfig, databases } from "@/lib/appwrite/config";
 import { CircularProgress } from "@mui/material";

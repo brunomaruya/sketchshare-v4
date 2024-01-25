@@ -5,12 +5,12 @@ import {
 } from "@heroicons/react/24/outline";
 
 import React, { useContext } from "react";
-import UserBtn from "./common/UserBtn";
-import { UserContext } from "../context/UserContext";
+import UserBtn from "../../common/UserBtn";
+import { UserContext } from "../../../context/UserContext";
 import Link from "next/link";
-import { UserSearcher } from "./common/UserSearcher";
-import PostBtn from "./common/PostBtn";
-import ThemeSwitcher from "./ThemeSwitcher";
+import { UserSearcher } from "../../common/UserSearcher";
+import PostBtn from "../../common/PostBtn";
+import ThemeSwitcher from "../../ThemeSwitcher";
 
 export default function MobileNav() {
   const { currentUser } = useContext(UserContext);

@@ -5,7 +5,7 @@ import {
   MicrophoneIcon,
 } from "@heroicons/react/24/outline";
 import React, { useContext } from "react";
-import { SearchBarContext } from "../context/SearchBarContext";
+import { SearchBarContext } from "../../../context/SearchBarContext";
 
 export default function SearchBar() {
   const { setIsSearchBarOpen } = useContext(SearchBarContext);

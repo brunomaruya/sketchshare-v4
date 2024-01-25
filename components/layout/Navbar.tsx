@@ -1,11 +1,11 @@
 "use client";
 import React, { useContext, useEffect } from "react";
-import NavLinks from "./NavLinks";
-import SearchBar from "./SearchBar";
-import Logo from "./Logo";
-import { SearchBarContext } from "../context/SearchBarContext";
+import NavLinks from "./navbarComponents/NavLinks";
+import SearchBar from "./navbarComponents/SearchBar";
+import Logo from "../Logo";
+import { SearchBarContext } from "../../context/SearchBarContext";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 import { createUserDocument, getUser } from "@/lib/appwrite/api";
 
 export default function Navbar() {

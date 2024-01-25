@@ -1,5 +1,5 @@
 import { account } from "@/lib/appwrite/config";
-import Gallery from "../../../components/Gallery";
+import Gallery from "../../../components/pages/home/Gallery";
 import TestBtn from "../../../components/common/TestBtn";
 
 export default function Home() {
