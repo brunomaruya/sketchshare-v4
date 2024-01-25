@@ -3,6 +3,7 @@ import { ThemeProvider } from "next-themes";
 import React, { useEffect, useState } from "react";
 import SearchBarProvider from "../context/SearchBarContext";
 import UserProvider from "../context/UserContext";
+import { NextUIProvider } from "@nextui-org/react";
 import {
   QueryClient,
   QueryClientProvider,
@@ -23,11 +24,13 @@ export default function Provider({ children }: { children: React.ReactNode }) {
 
   return (
     <ThemeProvider>
-      <QueryClientProvider client={queryClient}>
-        <UserProvider>
-          <SearchBarProvider>{children}</SearchBarProvider>
-        </UserProvider>
-      </QueryClientProvider>
+      <NextUIProvider>
+        <QueryClientProvider client={queryClient}>
+          <UserProvider>
+            <SearchBarProvider>{children}</SearchBarProvider>
+          </UserProvider>
+        </QueryClientProvider>
+      </NextUIProvider>
     </ThemeProvider>
   );
 }
