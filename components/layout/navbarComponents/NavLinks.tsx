@@ -3,7 +3,7 @@ import { navLinks } from "../../../consts/navLinks";
 import ThemeSwitcher from "../../common/ThemeSwitcher";
 import Link from "next/link";
 import { UserContext } from "../../../context/UserContext";
-import UserBtn from "../../common/UserBtn";
+import UserBtn from "../../custom/UserBtn";
 import { UserSearcher } from "../../common/UserSearcher";
 
 import PostBtn from "../../common/PostBtn";

@@ -5,7 +5,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 import React, { useContext } from "react";
-import UserBtn from "../../common/UserBtn";
+import UserBtn from "../../custom/UserBtn";
 import { UserContext } from "../../../context/UserContext";
 import Link from "next/link";
 import { UserSearcher } from "../../common/UserSearcher";

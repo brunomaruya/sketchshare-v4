@@ -5,8 +5,8 @@ import React, { createContext, useEffect, useState } from "react";
 import { ICurrentUser, IUserList } from "../types/types";
 
 type UserContextType = {
-  currentUser: ICurrentUser | undefined;
-  setCurrentUser: React.Dispatch<ICurrentUser>;
+  currentUser: ICurrentUser | any;
+  setCurrentUser: React.Dispatch<ICurrentUser | null>;
   usersList: IUserList[] | any;
 };
 
@@ -17,7 +17,7 @@ export default function UserProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [currentUser, setCurrentUser] = useState<ICurrentUser>();
+  const [currentUser, setCurrentUser] = useState<ICurrentUser | null>(null);
   const [usersList, setUsersList] = useState<any>();
   //TODO:
   // const [usersList, setUsersList] = useState<IUserList[]>();
