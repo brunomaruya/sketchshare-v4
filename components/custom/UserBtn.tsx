@@ -28,7 +28,10 @@ export default function UserBtn() {
             {currentUser.name}
           </DropdownItem>
           <DropdownItem closeOnSelect={false}>
-            <ThemeSwitcher />
+            <div className="flex justify-between items-center">
+              Dark Mode
+              <ThemeSwitcher />
+            </div>
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
