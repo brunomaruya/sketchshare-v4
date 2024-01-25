@@ -43,18 +43,12 @@ export const getUser = async () => {
 };
 
 export const deleteSession = async () => {
-  const promise = account.deleteSession("current");
-
-  promise.then(
-    function (response) {
-      console.log("deleteSession success");
-      console.log(response); // Success
-      window.location.assign("/sign-in");
-    },
-    function (error) {
-      console.log(error); // Failure
-    }
-  );
+  try {
+    account.deleteSession("current");
+    window.location.assign("/sign-in");
+  } catch (err) {
+    console.log("deleteSession(): " + err);
+  }
 };
 
 //--------------------------------------------------------------------------------------//
@@ -70,9 +64,8 @@ export const createUserDocument = async ({
   username: string;
   email: string;
 }) => {
-  console.log("Criando UserDocument");
   try {
-    const promise = databases
+    await databases
       .createDocument(
         appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
         appwriteConfig.userCollectionId ? appwriteConfig.userCollectionId : "",
@@ -81,13 +74,11 @@ export const createUserDocument = async ({
       )
       .then(function () {
         window.location.assign("/");
-        // console.log("indo para outra pagina");
       });
-    console.log("User Document criado:");
-    console.log(promise); // Success
+
     return true;
   } catch (err) {
-    console.log("ERRRRRROOOOOO: " + err); // Failure
+    console.log("createUserDocument() error: " + err); // Failure
     return false;
   }
 };

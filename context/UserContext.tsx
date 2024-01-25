@@ -42,7 +42,7 @@ export default function UserProvider({
       const response = await account.get();
       setCurrentUser(response);
     } catch (err) {
-      console.log("Erro eh: " + err);
+      console.log("init() error: " + err);
     }
   };
 

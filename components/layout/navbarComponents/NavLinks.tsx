@@ -22,6 +22,7 @@ export default function NavLinks() {
   useEffect(() => {
     initInNav();
   }, []);
+
   return (
     <div className="flex gap-3 items-center ">
       {navLinks.map((navLink) => {
