@@ -10,7 +10,7 @@ import { UserContext } from "../../../context/UserContext";
 import Link from "next/link";
 import { UserSearcher } from "../../common/UserSearcher";
 import PostBtn from "../../common/PostBtn";
-import ThemeSwitcher from "../../ThemeSwitcher";
+import ThemeSwitcher from "../../common/ThemeSwitcher";
 
 export default function MobileNav() {
   const { currentUser } = useContext(UserContext);

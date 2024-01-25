@@ -3,7 +3,7 @@ import { appwriteConfig, databases } from "@/lib/appwrite/config";
 import Image from "next/image";
 import React, { use, useContext, useEffect, useState } from "react";
 import Masonry from "react-masonry-css";
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../../../context/UserContext";
 import CircularProgress from "@mui/material/CircularProgress";
 
 export default function UserGallery() {

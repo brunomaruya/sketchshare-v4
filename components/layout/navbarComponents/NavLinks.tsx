@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { navLinks } from "../../../consts/navLinks";
-import ThemeSwitcher from "../../ThemeSwitcher";
+import ThemeSwitcher from "../../common/ThemeSwitcher";
 import Link from "next/link";
 import { UserContext } from "../../../context/UserContext";
 import UserBtn from "../../common/UserBtn";

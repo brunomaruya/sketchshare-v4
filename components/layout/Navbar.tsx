@@ -2,7 +2,7 @@
 import React, { useContext, useEffect } from "react";
 import NavLinks from "./navbarComponents/NavLinks";
 import SearchBar from "./navbarComponents/SearchBar";
-import Logo from "../Logo";
+import Logo from "../common/Logo";
 import { SearchBarContext } from "../../context/SearchBarContext";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { UserContext } from "../../context/UserContext";

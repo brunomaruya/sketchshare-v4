@@ -1,6 +1,6 @@
 import React from "react";
 import SignOutBtn from "../../../../../components/common/SignOutBtn";
-import UserGallery from "../../../../../components/common/UserGallery";
+import UserGallery from "../../../../../components/pages/user/UserGallery";
 
 interface ProductProps {
   params: {
