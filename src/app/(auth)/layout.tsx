@@ -19,15 +19,17 @@ export default function RootLayout({
     <html lang="en">
       <body className="m-0 lg:grid grid-cols-2 max-h-screen lg:w-full">
         <Provider>
-          <div className="w-72 lg:w-96 mx-auto my-20">{children}</div>
-          <div className="hidden lg:block lg:w-full">
-            <Image
-              src={imgLink}
-              height={500}
-              width={500}
-              alt="img"
-              className="h-screen w-full object-cover "
-            />
+          <div className="flex flex-col md:flex-row w-screen gap-20">
+            <div className="w-72 lg:flex-1 mx-auto my-20">{children}</div>
+            <div className="hidden lg:block lg:w-full flex-1">
+              <Image
+                src={imgLink}
+                height={500}
+                width={500}
+                alt="img"
+                className="h-screen w-full object-cover "
+              />
+            </div>
           </div>
         </Provider>
         <Toaster />
