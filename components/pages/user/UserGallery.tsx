@@ -3,17 +3,32 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
 import Gallery from "../../custom/Gallery";
 import { userPosts } from "@/lib/appwrite/api";
+export interface IPosts {
+  caption: any;
+  tags: any[];
+  imageUrl: string;
+  imageId: string;
+  location: any;
+  $id: string;
+  $createdAt: string;
+  $updatedAt: string;
+  $permissions: string[];
+  $databaseId: string;
+  $collectionId: string;
+}
 
 export default function UserGallery() {
-  const [posts, setPosts] = useState<any>();
-  const [userPath, setUserPath] = useState<any>();
-  const [userId, setUserId] = useState<any>();
+  const [posts, setPosts] = useState<IPosts[]>();
+  const [userPath, setUserPath] = useState<String>();
+  const [userId, setUserId] = useState<String>();
   const { currentUser, usersList } = useContext(UserContext);
   const pathName = window.location.pathname;
 
   async function fetchDatas() {
-    const userPostsResponse = await userPosts(userId);
-    userPostsResponse && setPosts(userPostsResponse.postedArt);
+    if (typeof userId === "string") {
+      const userPostsResponse = await userPosts(userId);
+      userPostsResponse && setPosts(userPostsResponse.postedArt);
+    }
   }
   useEffect(() => {
     const userPath = pathName.split("/")[2];
