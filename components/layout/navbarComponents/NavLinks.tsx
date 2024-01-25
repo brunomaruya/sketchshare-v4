@@ -9,19 +9,7 @@ import { UserSearcher } from "../../common/UserSearcher";
 import PostBtn from "../../common/PostBtn";
 
 export default function NavLinks() {
-  const { currentUser, init } = useContext(UserContext);
-
-  const initInNav = async () => {
-    try {
-      init();
-    } catch (err) {
-      console.log("init falhou: " + err);
-    }
-  };
-
-  useEffect(() => {
-    initInNav();
-  }, []);
+  const { currentUser } = useContext(UserContext);
 
   return (
     <div className="flex gap-3 items-center ">

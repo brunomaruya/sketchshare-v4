@@ -51,6 +51,15 @@ export const deleteSession = async () => {
   }
 };
 
+export const getCurrentUser = async () => {
+  try {
+    const response = await account.get();
+    return response;
+  } catch (err) {
+    console.log("init() error: " + err);
+  }
+};
+
 //--------------------------------------------------------------------------------------//
 //                                      DATABASES                                       //
 //--------------------------------------------------------------------------------------//

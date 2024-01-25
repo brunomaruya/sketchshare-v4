@@ -40,7 +40,6 @@ export default function UserGallery() {
   };
 
   useEffect(() => {
-    console.log(currentUser);
     if (currentUser) {
       if (pageUserId) {
         console.log();

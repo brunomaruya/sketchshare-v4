@@ -1,5 +1,9 @@
 " use client";
-import { createUserDocument, getUser } from "@/lib/appwrite/api";
+import {
+  createUserDocument,
+  getCurrentUser,
+  getUser,
+} from "@/lib/appwrite/api";
 import { account, appwriteConfig, databases } from "@/lib/appwrite/config";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
@@ -24,7 +28,6 @@ type UserContextType = {
   currentUser: CurrentUserType;
   setCurrentUser: React.Dispatch<any>;
   usersList: any;
-  init: any;
 };
 
 export const UserContext = createContext({} as UserContextType);
@@ -37,14 +40,9 @@ export default function UserProvider({
   const [currentUser, setCurrentUser] = useState<CurrentUserType | any>(null);
   const [usersList, setUsersList] = useState<any>(null);
 
-  const init = async () => {
-    try {
-      const response = await account.get();
-      setCurrentUser(response);
-    } catch (err) {
-      console.log("init() error: " + err);
-    }
-  };
+  useEffect(() => {
+    setCurrentUser(getCurrentUser());
+  }, []);
 
   const listUsers = async () => {
     const promise = databases.listDocuments(
@@ -64,7 +62,7 @@ export default function UserProvider({
   useEffect(() => {
     listUsers();
   }, []);
-  const values = { currentUser, setCurrentUser, usersList, init };
+  const values = { currentUser, setCurrentUser, usersList };
 
   return <UserContext.Provider value={values}>{children}</UserContext.Provider>;
 }
