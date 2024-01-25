@@ -24,7 +24,7 @@ export default function UserGallery() {
   }, []);
 
   useEffect(() => {
-    if (usersList) {
+    if (usersList !== undefined) {
       if (userPath) {
         const pageUser = usersList.find(
           (user: any) => user.username == userPath

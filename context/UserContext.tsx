@@ -7,7 +7,7 @@ import { ICurrentUser, IUserList } from "../types/types";
 type UserContextType = {
   currentUser: ICurrentUser | undefined;
   setCurrentUser: React.Dispatch<ICurrentUser>;
-  usersList: IUserList[] | undefined;
+  usersList: IUserList[] | any;
 };
 
 export const UserContext = createContext({} as UserContextType);
