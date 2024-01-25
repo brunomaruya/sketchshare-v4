@@ -90,7 +90,7 @@ export const listUsers = async () => {
   );
 
   try {
-    return promise.documents;
+    return promise;
   } catch (err) {
     console.log("listUsers error: " + err);
   }

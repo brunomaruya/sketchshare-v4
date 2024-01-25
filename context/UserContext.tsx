@@ -1,17 +1,13 @@
 " use client";
-import {
-  createUserDocument,
-  getCurrentUser,
-  listUsers,
-} from "@/lib/appwrite/api";
+import { getCurrentUser, listUsers } from "@/lib/appwrite/api";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { ICurrentUser, IUserList } from "../types/types";
 
 type UserContextType = {
   currentUser: ICurrentUser | undefined;
   setCurrentUser: React.Dispatch<ICurrentUser>;
-  usersList: IUserList[];
+  usersList: IUserList[] | undefined;
 };
 
 export const UserContext = createContext({} as UserContextType);
@@ -34,9 +30,7 @@ export default function UserProvider({
       setCurrentUser(getCurrentUserResponse);
     }
     if (listUsersResponse) {
-      if (listUsersResponse[0].username) {
-        setUsersList(listUsersResponse);
-      }
+      setUsersList(listUsersResponse.documents);
     }
   }
 
