@@ -1,11 +1,10 @@
 import { account } from "@/lib/appwrite/config";
-import Gallery from "../../../components/pages/home/Gallery";
-import TestBtn from "../../../components/common/TestBtn";
+import HomeGallery from "../../../components/pages/home/HomeGallery";
 
 export default function Home() {
   return (
     <main className=" mt-[var(--h-navbar)]">
-      <Gallery />
+      <HomeGallery />
     </main>
   );
 }

@@ -5,6 +5,7 @@ import React, { use, useContext, useEffect, useState } from "react";
 import Masonry from "react-masonry-css";
 import { UserContext } from "../../../context/UserContext";
 import CircularProgress from "@mui/material/CircularProgress";
+import Gallery from "../../custom/Gallery";
 
 export default function UserGallery() {
   const [posts, setPosts] = useState<any>();
@@ -61,44 +62,5 @@ export default function UserGallery() {
     }
   }, [usersList]);
 
-  const gallery = posts
-    ? posts.map((post: any, index: any) => {
-        return (
-          <div className="rounded-md relative" key={index}>
-            <Image
-              className="rounded-md"
-              src={post.imageUrl}
-              width={500}
-              height={500}
-              alt="image"
-            />
-          </div>
-        );
-      })
-    : "no data";
-
-  const breakpointColumnsObj = {
-    default: 4,
-    1100: 3,
-    700: 2,
-    500: 1,
-  };
-
-  return (
-    <>
-      {posts ? (
-        <Masonry
-          breakpointCols={breakpointColumnsObj}
-          className="my-masonry-grid m-default"
-          columnClassName="my-masonry-grid_column"
-        >
-          {gallery}
-        </Masonry>
-      ) : (
-        <div>
-          <CircularProgress />
-        </div>
-      )}
-    </>
-  );
+  return <Gallery posts={posts} />;
 }
