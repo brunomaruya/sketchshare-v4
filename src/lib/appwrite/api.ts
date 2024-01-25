@@ -96,3 +96,26 @@ export const listUsers = async () => {
     console.log("listUsers error: " + err);
   }
 };
+
+export const userPosts = async (userId: string) => {
+  const promise = databases.getDocument(
+    appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
+    appwriteConfig.userCollectionId ? appwriteConfig.userCollectionId : "",
+    userId
+  );
+
+  try {
+    return promise;
+  } catch (err) {
+    console.log("listUserPosts() error: " + err);
+  }
+
+  // promise.then(
+  //   function (response) {
+  //     setPosts(response.postedArt);
+  //   },
+  //   function (error) {
+  //     console.log(error); // Failure
+  //   }
+  // );
+};

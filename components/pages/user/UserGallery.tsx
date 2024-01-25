@@ -1,54 +1,33 @@
 "use client";
-import { appwriteConfig, databases } from "@/lib/appwrite/config";
-import Image from "next/image";
-import React, { use, useContext, useEffect, useState } from "react";
-import Masonry from "react-masonry-css";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
-import CircularProgress from "@mui/material/CircularProgress";
 import Gallery from "../../custom/Gallery";
+import { userPosts } from "@/lib/appwrite/api";
 
 export default function UserGallery() {
   const [posts, setPosts] = useState<any>();
   const [userPath, setUserPath] = useState<any>();
-  const [pageUserId, setPageUserId] = useState<any>();
-
+  const [userId, setUserId] = useState<any>();
   const { currentUser, usersList } = useContext(UserContext);
   const pathName = window.location.pathname;
+
+  async function fetchDatas() {
+    const userPostsResponse = await userPosts(userId);
+    userPostsResponse && setPosts(userPostsResponse.postedArt);
+  }
 
   useEffect(() => {
     const userPathConst = pathName.split("/")[2];
     setUserPath(userPathConst);
   }, []);
 
-  const listPosts = async () => {
-    console.log("listPosts called");
-    const promise = databases.getDocument(
-      appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
-      appwriteConfig.userCollectionId ? appwriteConfig.userCollectionId : "",
-      pageUserId
-    );
-    promise.then(
-      function (response) {
-        console.log("response: ");
-        console.log(response);
-        setPosts(response.postedArt);
-      },
-      function (error) {
-        console.log(error); // Failure
-      }
-    );
-  };
-
   useEffect(() => {
     if (currentUser) {
-      if (pageUserId) {
-        console.log();
-        listPosts();
-        console.log("Posts: ");
-        console.log(posts);
+      if (userId) {
+        fetchDatas();
       }
     }
-  }, [currentUser, pageUserId]);
+  }, [currentUser, userId]);
 
   useEffect(() => {
     if (usersList) {
@@ -56,7 +35,7 @@ export default function UserGallery() {
         const result = usersList.find(
           (user: any) => user.username == userPath
         ).$id;
-        setPageUserId(result);
+        setUserId(result);
       }
     }
   }, [usersList]);
