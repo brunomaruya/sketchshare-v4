@@ -1,8 +1,6 @@
 import { INewUser } from "@/types";
 import { account, databases, appwriteConfig } from "./config";
 import { ID } from "appwrite";
-import { CurrentUserType, UserContext } from "../../../context/UserContext";
-import { useContext } from "react";
 
 export const createNewAccount = async ({
   email,
@@ -10,17 +8,10 @@ export const createNewAccount = async ({
   username,
 }: INewUser) => {
   try {
-    const promise = await account.create(
-      ID.unique(),
-      email,
-      password,
-      username
-    );
-    console.log("Conta criada:");
-    console.log(promise);
+    await account.create(ID.unique(), email, password, username);
     return true;
   } catch (err) {
-    console.log("Alguma coisa deu errado em createNewAccount: " + err);
+    console.log("createNewAccount() error: " + err);
     return false;
   }
 };
@@ -33,12 +24,10 @@ export const login = async ({
   password: string;
 }) => {
   try {
-    const promise = await account.createEmailSession(email, password);
-    console.log("Conta logada: ");
-    console.log(promise);
+    await account.createEmailSession(email, password);
     return true;
   } catch (err) {
-    console.log("Alguma coisa deu errado em login: " + err);
+    console.log("login() error: " + err);
     return false;
   }
 };
@@ -46,12 +35,9 @@ export const login = async ({
 export const getUser = async () => {
   try {
     const promise = await account.get();
-
-    console.log("Promise: ");
-    console.log(promise);
     return promise;
   } catch (err) {
-    console.log("Alguma coisa deu errado: " + err);
+    console.log("getUser() error " + err);
     return false;
   }
 };

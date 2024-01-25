@@ -38,7 +38,6 @@ export default function UserProvider({
   const [usersList, setUsersList] = useState<any>(null);
 
   const init = async () => {
-    console.log("account.get() initialized");
     try {
       const response = await account.get();
       setCurrentUser(response);
@@ -54,8 +53,6 @@ export default function UserProvider({
     );
     promise.then(
       function (response) {
-        // console.log("listUsers success");
-        // console.log(response); // Success
         setUsersList(response.documents);
       },
       function (error) {
@@ -65,7 +62,6 @@ export default function UserProvider({
   };
 
   useEffect(() => {
-    // init();
     listUsers();
   }, []);
   const values = { currentUser, setCurrentUser, usersList, init };
