@@ -17,8 +17,6 @@ export default function UserGallery() {
   useEffect(() => {
     const userPathConst = pathName.split("/")[2];
     setUserPath(userPathConst);
-    console.log("userPath: ");
-    console.log(userPath);
   }, []);
 
   const listPosts = async () => {
