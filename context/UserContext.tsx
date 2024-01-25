@@ -4,30 +4,14 @@ import {
   getCurrentUser,
   listUsers,
 } from "@/lib/appwrite/api";
-import { account, appwriteConfig, databases } from "@/lib/appwrite/config";
-import React, { createContext, useContext, useEffect, useState } from "react";
 
-export interface CurrentUserType {
-  $id: string;
-  $createdAt: Date;
-  $updatedAt: Date;
-  name: string;
-  registration: Date;
-  status: boolean;
-  labels: any[];
-  passwordUpdate: Date;
-  email: string;
-  phone: string;
-  emailVerification: boolean;
-  phoneVerification: boolean;
-  prefs: Object;
-  accessedAt: Date;
-}
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { ICurrentUser, IUserList } from "../types/types";
 
 type UserContextType = {
-  currentUser: CurrentUserType;
-  setCurrentUser: React.Dispatch<any>;
-  usersList: any;
+  currentUser: ICurrentUser | undefined;
+  setCurrentUser: React.Dispatch<ICurrentUser>;
+  usersList: IUserList[];
 };
 
 export const UserContext = createContext({} as UserContextType);
@@ -37,21 +21,30 @@ export default function UserProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [currentUser, setCurrentUser] = useState<CurrentUserType | any>(null);
-  const [usersList, setUsersList] = useState<any>(null);
+  const [currentUser, setCurrentUser] = useState<ICurrentUser>();
+  const [usersList, setUsersList] = useState<any>();
+  //TODO:
+  // const [usersList, setUsersList] = useState<IUserList[]>();
 
   async function fetchDatas() {
     const listUsersResponse = await listUsers();
     const getCurrentUserResponse = await getCurrentUser();
-    setUsersList(listUsersResponse);
-    setCurrentUser(getCurrentUserResponse);
+
+    if (getCurrentUserResponse) {
+      setCurrentUser(getCurrentUserResponse);
+    }
+    if (listUsersResponse) {
+      if (listUsersResponse[0].username) {
+        setUsersList(listUsersResponse);
+      }
+    }
   }
 
   useEffect(() => {
     fetchDatas();
   }, []);
 
-  const values = { currentUser, setCurrentUser, usersList };
+  const values: UserContextType = { currentUser, setCurrentUser, usersList };
 
   return <UserContext.Provider value={values}>{children}</UserContext.Provider>;
 }

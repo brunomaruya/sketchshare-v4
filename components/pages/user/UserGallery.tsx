@@ -3,19 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
 import Gallery from "../../custom/Gallery";
 import { userPosts } from "@/lib/appwrite/api";
-export interface IPosts {
-  caption: any;
-  tags: any[];
-  imageUrl: string;
-  imageId: string;
-  location: any;
-  $id: string;
-  $createdAt: string;
-  $updatedAt: string;
-  $permissions: string[];
-  $databaseId: string;
-  $collectionId: string;
-}
+import { IPosts } from "../../../types/types";
 
 export default function UserGallery() {
   const [posts, setPosts] = useState<IPosts[]>();

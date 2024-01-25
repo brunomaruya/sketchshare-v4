@@ -39,7 +39,6 @@ export const getCurrentUser = async () => {
     return promise;
   } catch (err) {
     console.log("getUser() error " + err);
-    return false;
   }
 };
 
