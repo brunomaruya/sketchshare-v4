@@ -29,8 +29,6 @@ export default function NavLinks() {
 
       <UserSearcher />
 
-      <ThemeSwitcher />
-
       <button className="flex items-center gap-3">
         {currentUser ? (
           <UserBtn />

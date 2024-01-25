@@ -16,7 +16,7 @@ export default function UserBtn() {
   };
   return (
     <div>
-      <Dropdown>
+      <Dropdown closeOnSelect={false}>
         <DropdownTrigger>
           <Avatar name={currentUser.name} />
         </DropdownTrigger>
@@ -27,7 +27,7 @@ export default function UserBtn() {
           >
             {currentUser.name}
           </DropdownItem>
-          <DropdownItem>
+          <DropdownItem closeOnSelect={false}>
             <ThemeSwitcher />
           </DropdownItem>
         </DropdownMenu>
