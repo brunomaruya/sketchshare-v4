@@ -32,9 +32,10 @@ export const login = async ({
   }
 };
 
-export const getUser = async () => {
+export const getCurrentUser = async () => {
   try {
     const promise = await account.get();
+
     return promise;
   } catch (err) {
     console.log("getUser() error " + err);
@@ -48,15 +49,6 @@ export const deleteSession = async () => {
     window.location.assign("/sign-in");
   } catch (err) {
     console.log("deleteSession(): " + err);
-  }
-};
-
-export const getCurrentUser = async () => {
-  try {
-    const response = await account.get();
-    return response;
-  } catch (err) {
-    console.log("init() error: " + err);
   }
 };
 

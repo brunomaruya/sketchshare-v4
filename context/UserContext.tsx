@@ -2,7 +2,6 @@
 import {
   createUserDocument,
   getCurrentUser,
-  getUser,
   listUsers,
 } from "@/lib/appwrite/api";
 import { account, appwriteConfig, databases } from "@/lib/appwrite/config";
@@ -43,9 +42,9 @@ export default function UserProvider({
 
   async function fetchDatas() {
     const listUsersResponse = await listUsers();
-    const getCurrentUser = await listUsers();
+    const getCurrentUserResponse = await getCurrentUser();
     setUsersList(listUsersResponse);
-    setUsersList(getCurrentUser);
+    setCurrentUser(getCurrentUserResponse);
   }
 
   useEffect(() => {
