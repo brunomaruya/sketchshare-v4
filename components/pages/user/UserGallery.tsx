@@ -15,11 +15,21 @@ export default function UserGallery() {
     const userPostsResponse = await userPosts(userId);
     userPostsResponse && setPosts(userPostsResponse.postedArt);
   }
+  useEffect(() => {
+    const userPath = pathName.split("/")[2];
+    setUserPath(userPath);
+  }, []);
 
   useEffect(() => {
-    const userPathConst = pathName.split("/")[2];
-    setUserPath(userPathConst);
-  }, []);
+    if (usersList) {
+      if (userPath) {
+        const pageUser = usersList.find(
+          (user: any) => user.username == userPath
+        ).$id;
+        setUserId(pageUser);
+      }
+    }
+  }, [usersList]);
 
   useEffect(() => {
     if (currentUser) {
@@ -28,17 +38,6 @@ export default function UserGallery() {
       }
     }
   }, [currentUser, userId]);
-
-  useEffect(() => {
-    if (usersList) {
-      if (userPath) {
-        const result = usersList.find(
-          (user: any) => user.username == userPath
-        ).$id;
-        setUserId(result);
-      }
-    }
-  }, [usersList]);
 
   return <Gallery posts={posts} />;
 }
