@@ -31,7 +31,7 @@ export function UserSearcher() {
           <CommandInput placeholder="Search user..." />
           <CommandEmpty>No user found.</CommandEmpty>
           <CommandGroup>
-            {usersList
+            {Array.isArray(usersList)
               ? usersList.map((user: any) => (
                   <button
                     className="flex flex-col w-full "

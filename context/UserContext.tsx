@@ -3,6 +3,7 @@ import {
   createUserDocument,
   getCurrentUser,
   getUser,
+  listUsers,
 } from "@/lib/appwrite/api";
 import { account, appwriteConfig, databases } from "@/lib/appwrite/config";
 import React, { createContext, useContext, useEffect, useState } from "react";
@@ -40,28 +41,17 @@ export default function UserProvider({
   const [currentUser, setCurrentUser] = useState<CurrentUserType | any>(null);
   const [usersList, setUsersList] = useState<any>(null);
 
-  useEffect(() => {
-    setCurrentUser(getCurrentUser());
-  }, []);
-
-  const listUsers = async () => {
-    const promise = databases.listDocuments(
-      appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
-      appwriteConfig.userCollectionId ? appwriteConfig.userCollectionId : ""
-    );
-    promise.then(
-      function (response) {
-        setUsersList(response.documents);
-      },
-      function (error) {
-        console.log(error); // Failure
-      }
-    );
-  };
+  async function fetchDatas() {
+    const listUsersResponse = await listUsers();
+    const getCurrentUser = await listUsers();
+    setUsersList(listUsersResponse);
+    setUsersList(getCurrentUser);
+  }
 
   useEffect(() => {
-    listUsers();
+    fetchDatas();
   }, []);
+
   const values = { currentUser, setCurrentUser, usersList };
 
   return <UserContext.Provider value={values}>{children}</UserContext.Provider>;

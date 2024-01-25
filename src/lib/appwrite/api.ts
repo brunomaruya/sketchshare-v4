@@ -91,3 +91,16 @@ export const createUserDocument = async ({
     return false;
   }
 };
+
+export const listUsers = async () => {
+  const promise = await databases.listDocuments(
+    appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
+    appwriteConfig.userCollectionId ? appwriteConfig.userCollectionId : ""
+  );
+
+  try {
+    return promise.documents;
+  } catch (err) {
+    console.log("listUsers error: " + err);
+  }
+};
