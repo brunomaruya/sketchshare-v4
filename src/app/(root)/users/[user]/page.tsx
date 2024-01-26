@@ -12,7 +12,6 @@ export default function User({ params }: ProductProps) {
   return (
     <div className="mt-[var(--h-navbar)] ">
       <h1>User: {params.user}</h1>
-      <SignOutBtn />
       <UserGallery />
     </div>
   );

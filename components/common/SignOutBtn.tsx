@@ -14,19 +14,7 @@ export default function SignOutBtn() {
   };
   return (
     <>
-      {currentUser ? (
-        <>
-          {currentUser.name == userPath ? (
-            <button onClick={signOut} className="mb-2">
-              Sign Out
-            </button>
-          ) : (
-            ""
-          )}
-        </>
-      ) : (
-        ""
-      )}
+      <button onClick={signOut}>Sign Out</button>
     </>
   );
 }

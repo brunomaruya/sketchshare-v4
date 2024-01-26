@@ -14,7 +14,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { UserGroupIcon } from "@heroicons/react/24/outline";
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../../../context/UserContext";
 
 export function UserSearcher() {
   const [open, setOpen] = React.useState(false);

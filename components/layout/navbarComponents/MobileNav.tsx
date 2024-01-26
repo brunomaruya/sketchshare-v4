@@ -8,7 +8,7 @@ import React, { useContext } from "react";
 import UserBtn from "../../custom/UserBtn";
 import { UserContext } from "../../../context/UserContext";
 import Link from "next/link";
-import { UserSearcher } from "../../common/UserSearcher";
+import { UserSearcher } from "./UserSearcher";
 import PostBtn from "../../common/PostBtn";
 import ThemeSwitcher from "../../common/ThemeSwitcher";
 

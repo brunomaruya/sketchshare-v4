@@ -9,6 +9,8 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 import ThemeSwitcher from "../common/ThemeSwitcher";
+import SignOutBtn from "../common/SignOutBtn";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 export default function UserBtn() {
   const { currentUser } = useContext(UserContext);
   const goToPageUser = () => {
@@ -20,6 +22,9 @@ export default function UserBtn() {
         <DropdownTrigger>
           <Avatar name={currentUser.name} />
         </DropdownTrigger>
+
+        {/* // ---- DROPDOWN MENU -------------------------------------------------------------------- */}
+
         <DropdownMenu>
           <DropdownItem
             onClick={() => goToPageUser()}
@@ -32,6 +37,11 @@ export default function UserBtn() {
               Dark Mode
               <ThemeSwitcher />
             </div>
+          </DropdownItem>
+          <DropdownItem
+            startContent={<ArrowTopRightOnSquareIcon className="h-5" />}
+          >
+            <SignOutBtn />
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>

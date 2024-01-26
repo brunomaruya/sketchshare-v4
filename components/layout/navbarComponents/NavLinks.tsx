@@ -4,7 +4,7 @@ import ThemeSwitcher from "../../common/ThemeSwitcher";
 import Link from "next/link";
 import { UserContext } from "../../../context/UserContext";
 import UserBtn from "../../custom/UserBtn";
-import { UserSearcher } from "../../common/UserSearcher";
+import { UserSearcher } from "./UserSearcher";
 
 import PostBtn from "../../common/PostBtn";
 
