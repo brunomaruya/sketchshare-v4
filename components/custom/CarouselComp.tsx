@@ -3,9 +3,13 @@ import Lightbox from "yet-another-react-lightbox";
 import Inline from "yet-another-react-lightbox/plugins/inline";
 import "yet-another-react-lightbox/styles.css";
 
-export default function CarouselComp({ posts }: { posts: any }) {
-  const [index, setIndex] = useState(-1);
-
+export default function CarouselComp({
+  posts,
+  index,
+}: {
+  posts: any;
+  index: number;
+}) {
   const [urls, setUrls] = useState<any>([]);
 
   async function createUrlsArray() {
@@ -37,9 +41,9 @@ export default function CarouselComp({ posts }: { posts: any }) {
 
   return (
     <div>
-      {urls !== undefined ? (
+      {index > -1 ? (
         <Lightbox
-          // index={index}
+          index={index}
           slides={urls}
           inline={inline}
           plugins={[Inline]}

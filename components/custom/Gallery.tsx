@@ -6,12 +6,15 @@ import { breakpointColumnsObj } from "../constants/masonry/breakpointColumnsObj"
 import CarouselComp from "./CarouselComp";
 
 export default function Gallery({ posts }: { posts: any }) {
+  const [index, setIndex] = useState(-1);
   const gallery = posts
     ? posts.map((post: any, index: any) => {
         return (
           <div className="rounded-md relative" key={index}>
             <Image
-              onClick={() => {}}
+              onClick={() => {
+                setIndex(index);
+              }}
               className="rounded-md"
               src={post.imageUrl}
               width={500}
@@ -25,7 +28,7 @@ export default function Gallery({ posts }: { posts: any }) {
 
   return (
     <>
-      <CarouselComp posts={posts} />
+      <CarouselComp posts={posts} index={index} />
       {posts ? (
         <Masonry
           breakpointCols={breakpointColumnsObj}
