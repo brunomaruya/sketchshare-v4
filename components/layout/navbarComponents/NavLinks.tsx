@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { navLinks } from "../../../consts/navLinks";
+import { navLinks } from "../../constants/navLinks";
 import ThemeSwitcher from "../../common/ThemeSwitcher";
 import Link from "next/link";
 import { UserContext } from "../../../context/UserContext";
