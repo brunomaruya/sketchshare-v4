@@ -38,6 +38,7 @@
     "react-masonry-css": "^1.0.16",
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7",
+    "yet-another-react-lightbox": "^3.16.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
