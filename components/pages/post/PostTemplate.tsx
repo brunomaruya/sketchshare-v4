@@ -1,8 +1,6 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import { PostsContext } from "../../../context/PostsContext";
-import CarouselComp from "../../custom/CarouselComp";
-import { SelectImageContext } from "../../../context/SelectedImageContext";
 import PostCarousel from "./PostCarousel";
 
 export default function PostTemplate() {
@@ -19,6 +17,7 @@ export default function PostTemplate() {
   const definePost = () => {
     const pagePost = posts.find((post: any) => post.$id === postId);
     setPost(pagePost);
+    console.log(post);
   };
   const definePosition = () => {
     const index = posts.findIndex((post: any) => post.$id === postId);
@@ -36,15 +35,5 @@ export default function PostTemplate() {
     }
   }, [posts]);
 
-  return (
-    <div>
-      <PostCarousel position={position} posts={posts} />
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-        blanditiis omnis provident saepe? Excepturi hic voluptatum expedita
-        veritatis quam mollitia ea, sunt, obcaecati numquam magnam alias
-        blanditiis perferendis quibusdam omnis.
-      </div>
-    </div>
-  );
+  return <div>{post ? <PostCarousel src={post.imageUrl} /> : "..."}</div>;
 }

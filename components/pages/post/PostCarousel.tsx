@@ -1,10 +1,11 @@
 import React from "react";
-import CarouselComp from "../../custom/CarouselComp";
 
-export default function PostCarousel({ position, posts }: any) {
+import Image from "next/image";
+
+export default function PostCarousel({ src }: { src: any }) {
   return (
     <div>
-      <CarouselComp index={position} posts={posts} />
+      <Image width={500} height={500} alt="" src={src} />
     </div>
   );
 }
