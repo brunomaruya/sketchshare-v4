@@ -36,7 +36,6 @@ export default function Gallery({ posts }: { posts: any }) {
 
   return (
     <>
-      <CarouselComp posts={posts} index={imageIndex} />
       {posts ? (
         <Masonry
           breakpointCols={breakpointColumnsObj}

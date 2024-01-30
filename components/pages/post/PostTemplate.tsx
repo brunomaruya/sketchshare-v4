@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { PostsContext } from "../../../context/PostsContext";
 import CarouselComp from "../../custom/CarouselComp";
 import { SelectImageContext } from "../../../context/SelectedImageContext";
+import PostCarousel from "./PostCarousel";
 
 export default function PostTemplate() {
   const { posts } = useContext(PostsContext);
@@ -37,7 +38,13 @@ export default function PostTemplate() {
 
   return (
     <div>
-      <CarouselComp index={position} posts={posts} />
+      <PostCarousel position={position} posts={posts} />
+      <div>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
+        blanditiis omnis provident saepe? Excepturi hic voluptatum expedita
+        veritatis quam mollitia ea, sunt, obcaecati numquam magnam alias
+        blanditiis perferendis quibusdam omnis.
+      </div>
     </div>
   );
 }

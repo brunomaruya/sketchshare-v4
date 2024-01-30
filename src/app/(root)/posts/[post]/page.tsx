@@ -10,7 +10,6 @@ interface PostProps {
 export default function page({ params }: PostProps) {
   return (
     <div className="">
-      {params.post}
       <PostTemplate />
     </div>
   );

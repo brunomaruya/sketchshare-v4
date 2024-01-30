@@ -67,14 +67,7 @@ export default function CarouselComp({
               spacing: 0,
               imageFit: "cover",
             }}
-            inline={{
-              style: {
-                width: "100%",
-                maxWidth: "900px",
-                aspectRatio: "3 / 2",
-                margin: "0 auto",
-              },
-            }}
+            inline={inline}
           />
           <Lightbox
             open={open}
