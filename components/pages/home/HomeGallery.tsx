@@ -16,6 +16,7 @@ export default function HomeGallery() {
     );
     promise.then(
       function (response) {
+        console.log(response.documents);
         setPosts(response.documents);
       },
       function (error) {

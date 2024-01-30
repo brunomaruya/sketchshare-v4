@@ -17,7 +17,8 @@ export default function Gallery({ posts }: { posts: any }) {
             <Image
               onClick={() => {
                 setImageIndex(index);
-                console.log(imageIndex);
+                console.log(post.$id);
+                window.location.assign(`/posts/${post.$id}`);
               }}
               className="rounded-md"
               src={post.imageUrl}

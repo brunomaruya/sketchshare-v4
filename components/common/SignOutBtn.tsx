@@ -5,8 +5,6 @@ import { deleteSession } from "@/lib/appwrite/api";
 
 export default function SignOutBtn() {
   const { setCurrentUser, currentUser } = useContext(UserContext);
-  const pathName = window.location.pathname;
-  const userPath = pathName.split("/")[2];
 
   const signOut = () => {
     deleteSession();
