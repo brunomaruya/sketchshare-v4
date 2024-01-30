@@ -21,7 +21,7 @@ export default function PostCarousel({
   };
 
   return (
-    <div className="relative">
+    <div className="relative ">
       <Image
         className="h-[700px] w-full object-contain"
         width={500}

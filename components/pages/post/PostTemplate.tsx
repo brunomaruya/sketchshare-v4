@@ -51,8 +51,8 @@ export default function PostTemplate() {
   }, [posts]);
 
   return (
-    <div>
-      <div className="w-[50%]">
+    <div className="m-default">
+      <div className="w-[80%]">
         {post ? (
           <PostCarousel
             src={post.imageUrl}
