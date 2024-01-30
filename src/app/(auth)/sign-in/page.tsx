@@ -1,13 +1,12 @@
 "use client";
 import * as z from "zod";
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -17,17 +16,11 @@ import { Input } from "@/components/ui/input";
 import { SignInValidation } from "@/lib/validation";
 import Image from "next/image";
 import logo from "../../../../public/images/pencil.png";
-import { useToast } from "@/components/ui/use-toast";
-import {
-  createNewAccount,
-  createUserDocument,
-  login,
-} from "@/lib/appwrite/api";
+import { login } from "@/lib/appwrite/api";
 import Link from "next/link";
 import { CircularProgress } from "@mui/material";
 
 export default function SignIn() {
-  const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   // 1. Define your form.
   const form = useForm<z.infer<typeof SignInValidation>>({

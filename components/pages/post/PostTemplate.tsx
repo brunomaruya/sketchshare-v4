@@ -10,6 +10,7 @@ export default function PostTemplate() {
   const [post, setPost] = useState<any>();
   const [position, setPosition] = useState<any>();
   const [nextPostId, setNextPostId] = useState<any>();
+  const [prevPostId, setPrevPostId] = useState<any>();
 
   const definePostId = () => {
     const postPath = pathName.split("/")[2];
@@ -18,7 +19,6 @@ export default function PostTemplate() {
   const definePost = () => {
     const pagePost = posts.find((post: any) => post.$id === postId);
     setPost(pagePost);
-    console.log(post);
   };
   const definePosition = () => {
     const index = posts.findIndex((post: any) => post.$id === postId);
@@ -27,7 +27,13 @@ export default function PostTemplate() {
 
   const defineNextPostId = () => {
     const index = posts.findIndex((post: any) => post.$id === postId);
-    console.log(posts[index]);
+    const nextPost = posts[index + 1];
+    setNextPostId(nextPost.$id);
+  };
+  const definePrevPostId = () => {
+    const index = posts.findIndex((post: any) => post.$id === postId);
+    const prevPost = posts[index - 1];
+    setPrevPostId(prevPost.$id);
   };
 
   useEffect(() => {
@@ -39,13 +45,18 @@ export default function PostTemplate() {
       definePost();
       definePosition();
       defineNextPostId();
+      definePrevPostId();
     }
   }, [posts]);
 
   return (
     <div>
       {post && nextPostId ? (
-        <PostCarousel src={post.imageUrl} nextPostID={nextPostId} />
+        <PostCarousel
+          src={post.imageUrl}
+          nextPostId={nextPostId}
+          prevPostId={prevPostId}
+        />
       ) : (
         "..."
       )}
