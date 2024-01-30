@@ -10,6 +10,7 @@ export default function PostTemplate() {
   const pathName = window.location.pathname;
   const [postId, setPostId] = useState<String>();
   const [post, setPost] = useState<any>();
+  const [position, setPosition] = useState<any>();
 
   useEffect(() => {
     const postPath = pathName.split("/")[2];
@@ -19,14 +20,22 @@ export default function PostTemplate() {
   useEffect(() => {
     if (posts !== undefined) {
       const pagePost = posts.find((post: any) => post.$id === postId);
-      console.log(pagePost);
+      console.log(posts);
       setPost(pagePost);
+    }
+  }, [posts]);
+
+  useEffect(() => {
+    if (posts !== undefined) {
+      const index = posts.findIndex((post: any) => post.$id === postId);
+      setPosition(index);
+      console.log(index);
     }
   }, [posts]);
 
   return (
     <div>
-      <CarouselComp index={imageIndex} posts={posts} />
+      <CarouselComp index={position} posts={posts} />
     </div>
   );
 }
