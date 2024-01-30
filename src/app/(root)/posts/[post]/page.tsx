@@ -1,4 +1,5 @@
 import React from "react";
+import PostTemplate from "../../../../../components/pages/post/PostTemplate";
 
 interface PostProps {
   params: {
@@ -7,5 +8,10 @@ interface PostProps {
 }
 
 export default function page({ params }: PostProps) {
-  return <div className="mt-52">{params.post}</div>;
+  return (
+    <div className="">
+      {params.post}
+      <PostTemplate />
+    </div>
+  );
 }

@@ -10,6 +10,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import SelectedImageProvider from "../context/SelectedImageContext";
+import PostsProvider from "../context/PostsContext";
 
 const queryClient = new QueryClient();
 
@@ -28,9 +29,11 @@ export default function Provider({ children }: { children: React.ReactNode }) {
       <NextUIProvider>
         <QueryClientProvider client={queryClient}>
           <UserProvider>
-            <SelectedImageProvider>
-              <SearchBarProvider>{children}</SearchBarProvider>
-            </SelectedImageProvider>
+            <PostsProvider>
+              <SelectedImageProvider>
+                <SearchBarProvider>{children}</SearchBarProvider>
+              </SelectedImageProvider>
+            </PostsProvider>
           </UserProvider>
         </QueryClientProvider>
       </NextUIProvider>

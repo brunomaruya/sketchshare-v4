@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className="bg-background text-text">
         <Provider>
           <Navbar />
-          <main>{children}</main>
+          <main className="mt-16">{children}</main>
           <MobileNav />
         </Provider>
       </body>
