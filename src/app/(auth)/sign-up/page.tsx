@@ -21,7 +21,7 @@ import { useToast } from "@/components/ui/use-toast";
 import {
   createNewAccount,
   createUserDocument,
-  getUser,
+  getCurrentUser,
   login,
 } from "@/lib/appwrite/api";
 import Link from "next/link";
@@ -36,7 +36,7 @@ export default function SignUp() {
   const reset = async () => {
     try {
       setIsLoading(false);
-      setCurrentUser(() => null);
+      setCurrentUser(null);
     } catch (err) {
       console.log("setCurrentUser falhou: " + err);
     }
@@ -84,9 +84,9 @@ export default function SignUp() {
     if (createNewAccountSuccess) {
       const loginSuccess = await login(values);
       if (loginSuccess) {
-        const getUserSuccess = await getUser();
-        if (getUserSuccess) {
-          setCurrentUser(getUserSuccess);
+        const getCurrentUserSuccess = await getCurrentUser();
+        if (getCurrentUserSuccess) {
+          setCurrentUser(getCurrentUserSuccess);
         }
       }
     }
