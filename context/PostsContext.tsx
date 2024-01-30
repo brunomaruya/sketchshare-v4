@@ -10,7 +10,7 @@ export default function PostsProvider({
 }) {
   const [posts, setPosts] = useState<any>();
 
-  const listPosts = async () => {
+  const definePosts = async () => {
     const promise = databases.listDocuments(
       appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
       appwriteConfig.postCollectionId ? appwriteConfig.postCollectionId : ""
@@ -26,8 +26,9 @@ export default function PostsProvider({
   };
 
   useEffect(() => {
-    listPosts();
+    definePosts();
   }, []);
+
   return (
     <PostsContext.Provider value={{ posts, setPosts }}>
       {children}
