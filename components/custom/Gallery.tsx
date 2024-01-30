@@ -1,19 +1,23 @@
+"use client";
 import { CircularProgress } from "@mui/material";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Masonry from "react-masonry-css";
 import { breakpointColumnsObj } from "../constants/masonry/breakpointColumnsObj";
 import CarouselComp from "./CarouselComp";
+import { SelectImageContext } from "../../context/SelectedImageContext";
 
 export default function Gallery({ posts }: { posts: any }) {
-  const [index, setIndex] = useState(-1);
+  const { imageIndex, setImageIndex } = useContext(SelectImageContext);
+
   const gallery = posts
     ? posts.map((post: any, index: any) => {
         return (
           <div className="rounded-md relative" key={index}>
             <Image
               onClick={() => {
-                setIndex(index);
+                setImageIndex(index);
+                console.log(imageIndex);
               }}
               className="rounded-md"
               src={post.imageUrl}
@@ -28,7 +32,7 @@ export default function Gallery({ posts }: { posts: any }) {
 
   return (
     <>
-      <CarouselComp posts={posts} index={index} />
+      <CarouselComp posts={posts} index={imageIndex} />
       {posts ? (
         <Masonry
           breakpointCols={breakpointColumnsObj}

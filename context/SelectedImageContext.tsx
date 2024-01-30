@@ -2,7 +2,7 @@ import React, { createContext, useState } from "react";
 
 export const SelectImageContext = createContext({} as any);
 
-export default function SelectedImageProvider({
+export default function SelectImageProvider({
   children,
 }: {
   children: React.ReactNode;
