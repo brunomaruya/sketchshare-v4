@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+"use client";
+import React, { useContext, useEffect, useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import Inline from "yet-another-react-lightbox/plugins/inline";
 import Captions from "yet-another-react-lightbox/plugins/captions";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/captions.css";
+import { SelectImageContext } from "../../context/SelectedImageContext";
 
 export default function CarouselComp({
   posts,
@@ -12,7 +14,9 @@ export default function CarouselComp({
   posts: any;
   index: number;
 }) {
+  const { imageIndex, setImageIndex } = useContext(SelectImageContext);
   const [urls, setUrls] = useState<any>([]);
+
   async function createUrlsArray() {
     (await posts)
       ? posts.map((post: any) =>
@@ -40,12 +44,11 @@ export default function CarouselComp({
     },
   };
   const [open, setOpen] = React.useState(false);
-  const [index2, setIndex2] = React.useState(0);
 
   const toggleOpen = (state: boolean) => () => setOpen(state);
 
   const updateIndex = ({ index: current }: { index: number }) =>
-    setIndex2(current);
+    setImageIndex(current);
 
   return (
     <div>
@@ -76,7 +79,7 @@ export default function CarouselComp({
           <Lightbox
             open={open}
             close={toggleOpen(false)}
-            index={index2}
+            index={imageIndex}
             slides={urls}
             on={{ view: updateIndex }}
             animation={{ fade: 0 }}
