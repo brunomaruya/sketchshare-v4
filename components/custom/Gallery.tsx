@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { use, useContext, useEffect, useState } from "react";
 import Masonry from "react-masonry-css";
 import { breakpointColumnsObj } from "../constants/masonry/breakpointColumnsObj";
-import CarouselComp from "./CarouselComp";
+
 import { SelectImageContext } from "../../context/SelectedImageContext";
 
 export default function Gallery({ posts }: { posts: any }) {

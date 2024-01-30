@@ -4,11 +4,12 @@ import { PostsContext } from "../../../context/PostsContext";
 import PostCarousel from "./PostCarousel";
 
 export default function PostTemplate() {
-  const { posts } = useContext(PostsContext);
   const pathName = window.location.pathname;
+  const { posts } = useContext(PostsContext);
   const [postId, setPostId] = useState<String>();
   const [post, setPost] = useState<any>();
   const [position, setPosition] = useState<any>();
+  const [nextPostId, setNextPostId] = useState<any>();
 
   const definePostId = () => {
     const postPath = pathName.split("/")[2];
@@ -24,6 +25,11 @@ export default function PostTemplate() {
     setPosition(index);
   };
 
+  const defineNextPostId = () => {
+    const index = posts.findIndex((post: any) => post.$id === postId);
+    console.log(posts[index]);
+  };
+
   useEffect(() => {
     definePostId();
   }, []);
@@ -32,8 +38,17 @@ export default function PostTemplate() {
     if (posts !== undefined) {
       definePost();
       definePosition();
+      defineNextPostId();
     }
   }, [posts]);
 
-  return <div>{post ? <PostCarousel src={post.imageUrl} /> : "..."}</div>;
+  return (
+    <div>
+      {post && nextPostId ? (
+        <PostCarousel src={post.imageUrl} nextPostID={nextPostId} />
+      ) : (
+        "..."
+      )}
+    </div>
+  );
 }
