@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { PostsContext } from "../../../context/PostsContext";
 import PostCarousel from "./PostCarousel";
+import { Spinner } from "@nextui-org/react";
 
 export default function PostTemplate() {
   const pathName = window.location.pathname;
@@ -51,15 +52,19 @@ export default function PostTemplate() {
 
   return (
     <div>
-      {post && nextPostId ? (
-        <PostCarousel
-          src={post.imageUrl}
-          nextPostId={nextPostId}
-          prevPostId={prevPostId}
-        />
-      ) : (
-        "..."
-      )}
+      <div className="w-[50%]">
+        {post ? (
+          <PostCarousel
+            src={post.imageUrl}
+            nextPostId={nextPostId}
+            prevPostId={prevPostId}
+          />
+        ) : (
+          <div>
+            <Spinner />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
