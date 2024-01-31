@@ -8,30 +8,5 @@ export default function PostsProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [posts, setPosts] = useState<any>();
-
-  const definePosts = async () => {
-    const promise = databases.listDocuments(
-      appwriteConfig.databaseId ? appwriteConfig.databaseId : "",
-      appwriteConfig.postCollectionId ? appwriteConfig.postCollectionId : ""
-    );
-    promise.then(
-      function (response) {
-        setPosts(response.documents);
-      },
-      function (error) {
-        console.log(error); // Failure
-      }
-    );
-  };
-
-  useEffect(() => {
-    definePosts();
-  }, []);
-
-  return (
-    <PostsContext.Provider value={{ posts, setPosts }}>
-      {children}
-    </PostsContext.Provider>
-  );
+  return <PostsContext.Provider value={{}}>{children}</PostsContext.Provider>;
 }
