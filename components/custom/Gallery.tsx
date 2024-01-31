@@ -9,10 +9,17 @@ import "yet-another-react-lightbox/styles.css";
 import Captions from "yet-another-react-lightbox/plugins/captions";
 import "yet-another-react-lightbox/plugins/captions.css";
 import Link from "next/link";
-
+import { divider } from "@nextui-org/react";
+import { usePathname } from "next/navigation";
 export default function Gallery({ posts }: { posts: any }) {
   const [index, setIndex] = useState(-1);
   const [urls, setUrls] = useState<any>([]);
+  const pathname = usePathname();
+  const userNameFromPathName = () => {
+    const pathnameArr = pathname.split("/");
+
+    return pathnameArr[pathnameArr.length - 1];
+  };
 
   async function defineUrls() {
     (await posts)
@@ -23,7 +30,20 @@ export default function Gallery({ posts }: { posts: any }) {
               src: post.imageUrl,
               title: (
                 <div>
-                  <Link href="/">user</Link>
+                  {post.postCreator ? (
+                    post.postCreator.map((creator: any, index: any) => (
+                      <div
+                        onClick={() =>
+                          window.location.assign(`/users/${creator.username}`)
+                        }
+                        key={index}
+                      >
+                        {creator.username}
+                      </div>
+                    ))
+                  ) : (
+                    <div>{userNameFromPathName()}</div>
+                  )}
                 </div>
               ),
               description: <div>description</div>,
