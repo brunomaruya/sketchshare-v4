@@ -6,8 +6,9 @@ import Masonry from "react-masonry-css";
 import { breakpointColumnsObj } from "../constants/masonry/breakpointColumnsObj";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-
-import { SelectImageContext } from "../../context/SelectedImageContext";
+import Captions from "yet-another-react-lightbox/plugins/captions";
+import "yet-another-react-lightbox/plugins/captions.css";
+import Link from "next/link";
 
 export default function Gallery({ posts }: { posts: any }) {
   const [index, setIndex] = useState(-1);
@@ -18,7 +19,15 @@ export default function Gallery({ posts }: { posts: any }) {
       ? posts.map((post: any) =>
           setUrls((oldUrls: any) => [
             ...oldUrls,
-            { src: post.imageUrl, title: "slide", description: "description" },
+            {
+              src: post.imageUrl,
+              title: (
+                <div>
+                  <Link href="/">user</Link>
+                </div>
+              ),
+              description: <div>description</div>,
+            },
           ])
         )
       : "";
@@ -47,10 +56,12 @@ export default function Gallery({ posts }: { posts: any }) {
   return (
     <>
       <Lightbox
+        plugins={[Captions]}
         slides={urls}
         open={index >= 0}
         index={index}
         close={() => setIndex(-1)}
+        captions={{ showToggle: true }}
       />
       {posts ? (
         <Masonry
