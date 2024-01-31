@@ -29,6 +29,9 @@
   @apply text-red-500 font-thin;
 }
 
+body {
+  height: calc(100vh - var(--h-navbar));
+}
 /* / ---- MASONRY -------------------------------------------------------------------------- */
 .my-masonry-grid {
   display: -webkit-box; /* Not needed if autoprefixing */
