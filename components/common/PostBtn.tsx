@@ -43,7 +43,6 @@ export default function PostBtn() {
 
   const createFile = async (e: any) => {
     setIsLoading(true);
-    console.log("createFile clicked");
     e.preventDefault();
 
     if (file) {
@@ -90,6 +89,7 @@ export default function PostBtn() {
             postCreator: [currentUser.$id],
             imageUrl: url,
             imageId: ID.unique(),
+            caption: description,
           }
         )
         .then((resolver) => {
