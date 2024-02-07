@@ -1,9 +1,12 @@
-<h1 align="center"> SketchShare </h1> <br>
+<h1 align="center">
+  SkecthShare<br/>
+  <a href="https://sketchshare.vercel.app/" target="_blank">sketchshare.vercel.app</a>
+</h1><br/>
 <p align="center">
-  <a href="https://sketchshare.vercel.app/">
-    <img alt="GitPoint" title="GitPoint" src="http://i.imgur.com/VShxJHs.png" width="450">
-  </a>
+    <img alt="SketchShare" title="SketchShare" src="thumbnails/mobile.png" height="450" >    
+   <img alt="SketchShare" title="SketchShare" src="thumbnails/desktop.png" height="450" width="750">
 </p>
+
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
