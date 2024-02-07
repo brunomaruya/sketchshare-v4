@@ -53,7 +53,7 @@ export default function PostBtn() {
             getFileView(resolver);
           });
       } catch (err) {
-        console.log("Erro eh: " + err);
+        console.log("createFile() err: " + err);
       }
     }
   };
@@ -66,10 +66,8 @@ export default function PostBtn() {
         file.$id
       );
       setUrl(promise);
-      console.log("url:");
-      console.log(url);
     } catch (err) {
-      console.log("Error in getFileView: " + err);
+      console.log("getFileView() err: " + err);
     }
   };
 
@@ -94,7 +92,7 @@ export default function PostBtn() {
           location.reload();
         });
     } catch (err) {
-      console.log("erro de createPost: " + err);
+      console.log("createPost err: " + err);
     }
   };
   useEffect(() => {
