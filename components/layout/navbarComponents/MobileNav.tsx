@@ -1,6 +1,8 @@
 "use client";
 import {
   ArrowLeftOnRectangleIcon,
+  ChatBubbleLeftIcon,
+  HomeIcon,
   UserIcon,
 } from "@heroicons/react/24/outline";
 
@@ -18,11 +20,13 @@ export default function MobileNav() {
     <div className="mobile-nav">
       <ul className="flex flex-bc">
         <li>
-          <ThemeSwitcher />
+          <Link href="/">
+            <HomeIcon className="size-icon" />
+          </Link>
         </li>
 
         <li>
-          <UserIcon className="size-icon" />
+          <ChatBubbleLeftIcon className="size-icon" />
         </li>
 
         <li>
