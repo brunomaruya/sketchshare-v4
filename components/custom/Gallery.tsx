@@ -46,7 +46,9 @@ export default function Gallery({ posts }: { posts: any }) {
                   )}
                 </div>
               ),
-              description: <div>description</div>,
+              description: (
+                <div>{post.caption ? post.caption : "no description"}</div>
+              ),
             },
           ])
         )
@@ -54,6 +56,7 @@ export default function Gallery({ posts }: { posts: any }) {
   }
   useEffect(() => {
     defineUrls();
+    console.log(posts);
   }, [posts]);
 
   const gallery = posts
