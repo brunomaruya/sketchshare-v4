@@ -3,8 +3,8 @@
   <a href="https://sketchshare.vercel.app/" target="_blank">sketchshare.vercel.app</a>
 </h1><br/>
 <p align="center">
-    <img alt="SketchShare" title="SketchShare" src="thumbnails/mobile.png" height="450" >    
-   <img alt="SketchShare" title="SketchShare" src="thumbnails/desktop.png" height="450" width="750">
+   <img alt="SketchShare" title="SketchShare" src="thumbnails/desktop.png" height="300" width="500">
+    <img alt="SketchShare" title="SketchShare" src="thumbnails/mobile.png" height="300" >    
 </p>
 
 
@@ -25,42 +25,51 @@
 
 ## Introduction
 
-[![Build Status](https://img.shields.io/travis/gitpoint/git-point.svg?style=flat-square)](https://travis-ci.org/gitpoint/git-point)
-[![Coveralls](https://img.shields.io/coveralls/github/gitpoint/git-point.svg?style=flat-square)](https://coveralls.io/github/gitpoint/git-point)
-[![All Contributors](https://img.shields.io/badge/all_contributors-73-orange.svg?style=flat-square)](./CONTRIBUTORS.md)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
-[![Gitter chat](https://img.shields.io/badge/chat-on_gitter-008080.svg?style=flat-square)](https://gitter.im/git-point)
-
-View repository and user information, control your notifications and even manage your issues and pull requests. Built with React Native, GitPoint is one of the most feature-rich unofficial GitHub clients that is 100% free.
-
-**Available for both iOS and Android.**
-
+SketchShare is a vibrant online community where users can share images, add descriptions, and interact with other users' posts. The platform allows users to create accounts and log in to personalize their experience.
+<!--
 <p align="center">
   <img src = "http://i.imgur.com/HowF6aM.png" width=350>
-</p>
+ </p> -->
 
 ## Features
 
 A few of the things you can do with GitPoint:
 
-* View user activity feed
-* Communicate on your issue and pull request conversations
-* Close or lock issues
-* Apply labels and assignees
-* Review and merge pull requests
-* Create new issues
-* Star, watch and fork repositories
-* Control your unread and participating notifications
-* Easily search for any user or repository
+* User Registration and Login
+* Image Upload
+* Explore and Discover
+* Dark Mode
+* Web responsive
 
-<p align="center">
+ <!--<p align="center">
   <img src = "http://i.imgur.com/IkSnFRL.png" width=700>
 </p>
 
 <p align="center">
-  <img src = "http://i.imgur.com/0iorG20.png" width=700>
-</p>
+  <img src = "http://i.imgur.com/0iorG20.png" width=700></p>
+ -->
+ 
+    
+## Getting Started
+* This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+
+<!--
+
 
 ## Feedback
 
@@ -85,3 +94,4 @@ Please take a look at the [contributing guidelines](./CONTRIBUTING.md) for a det
 
 **Development Keys**: The `CLIENT_ID` and `CLIENT_SECRET` in `api/index.js` are for development purposes and do not represent the actual application keys. Feel free to use them or use a new set of keys by creating an [OAuth application](https://github.com/settings/applications/new) of your own. Set the "Authorization callback URL" to `gitpoint://welcome`.
 
+ </p> -->
