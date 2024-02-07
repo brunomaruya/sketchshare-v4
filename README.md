@@ -10,16 +10,6 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Features](#features)
-- [Feedback](#feedback)
-- [Contributors](#contributors)
-- [Build Process](#build-process)
-- [Backers](#backers-)
-- [Sponsors](#sponsors-)
-- [Acknowledgments](#acknowledgments)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -50,7 +40,7 @@ A few of the things you can do with GitPoint:
  -->
  
     
-## Getting Started
+## Build Process
 * This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 First, run the development server:
