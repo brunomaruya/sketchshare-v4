@@ -17,7 +17,6 @@ export default function Gallery({ posts }: { posts: any }) {
   const pathname = usePathname();
   const userNameFromPathName = () => {
     const pathnameArr = pathname.split("/");
-
     return pathnameArr[pathnameArr.length - 1];
   };
 
@@ -33,6 +32,7 @@ export default function Gallery({ posts }: { posts: any }) {
                   {post.postCreator ? (
                     post.postCreator.map((creator: any, index: any) => (
                       <div
+                        className="hover:cursor-pointer "
                         onClick={() =>
                           window.location.assign(`/users/${creator.username}`)
                         }
@@ -62,7 +62,7 @@ export default function Gallery({ posts }: { posts: any }) {
           <div className="rounded-md relative" key={index}>
             <Image
               onClick={() => setIndex(index)}
-              className="rounded-md"
+              className="rounded-md hover:cursor-pointer"
               src={post.imageUrl}
               width={500}
               height={500}
