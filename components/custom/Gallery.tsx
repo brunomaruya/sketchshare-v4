@@ -95,7 +95,7 @@ export default function Gallery({ posts }: { posts: any }) {
           {gallery}
         </Masonry>
       ) : (
-        <div>
+        <div className="w-full pt-80 flex justify-center">
           <CircularProgress />
         </div>
       )}

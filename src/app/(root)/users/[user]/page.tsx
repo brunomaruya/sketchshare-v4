@@ -11,7 +11,7 @@ interface UserProps {
 export default function User({ params }: UserProps) {
   return (
     <div className="mt-[var(--h-navbar)] ">
-      <h1>User: {params.user}</h1>
+      <h1 className="m-default text-xl ">User: {params.user}</h1>
       <UserGallery />
     </div>
   );
