@@ -23,7 +23,6 @@ SketchShare is a vibrant online community where users can share images, add desc
 
 ## Features
 
-A few of the things you can do with GitPoint:
 
 * User Registration and Login
 * Image Upload
