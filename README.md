@@ -3,7 +3,7 @@
   <a href="https://sketchshare.vercel.app/" target="_blank">sketchshare.vercel.app</a>
 </h1><br/>
 <p align="center">
-   <img alt="SketchShare" title="SketchShare" src="thumbnails/desktop.png" height="300" width="500">
+   <img alt="SketchShare" title="SketchShare" src="thumbnails/desktop.png" height="300" >
     <img alt="SketchShare" title="SketchShare" src="thumbnails/mobile.png" height="300" >    
 </p>
 
