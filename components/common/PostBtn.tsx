@@ -14,6 +14,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Textarea } from "@/components/ui/textarea";
 
 import { appwriteConfig, databases, storage } from "@/lib/appwrite/config";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
@@ -24,6 +25,7 @@ import { CircularProgress } from "@mui/material";
 
 export default function PostBtn() {
   const [file, setFile] = useState<any>();
+  const [description, setDescription] = useState<any>();
   const [url, setUrl] = useState<any>();
   const { currentUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,6 +33,11 @@ export default function PostBtn() {
   const handleFileChange = (e: any) => {
     if (e.target.files) {
       setFile(e.target.files[0]);
+    }
+  };
+  const handleDescriptionChange = (e: any) => {
+    if (e.target.value) {
+      setDescription(e.target.value);
     }
   };
 
@@ -59,7 +66,6 @@ export default function PostBtn() {
   };
 
   const getFileView = async (file: any) => {
-    console.log("getFileView called");
     try {
       const promise = storage.getFileView(
         appwriteConfig.storageId ? appwriteConfig.storageId : "",
@@ -126,7 +132,12 @@ export default function PostBtn() {
             </AlertDialogCancel>
           </AlertDialogFooter>
           <AlertDialogTitle>Post your art</AlertDialogTitle>
-          <AlertDialogDescription>
+          <AlertDialogDescription className="flex flex-col gap-3">
+            <Textarea
+              placeholder="Add a description."
+              onChange={handleDescriptionChange}
+            />
+
             <input type="file" onChange={handleFileChange} />
             {file ? (
               <AlertDialogAction
