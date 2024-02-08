@@ -45,6 +45,8 @@ SketchShare is a vibrant online community where users can share images, add desc
 First, run the development server:
 
 ```bash
+git clone https://github.com/brunomaruya/sketchshare-v4.git
+
 npm run dev
 # or
 yarn dev
